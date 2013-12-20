@@ -1,0 +1,63 @@
+[user]
+    name = Thomas Wienecke
+    email = wienecke.t@gmail.com
+[core]
+    editor = vim
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+[alias]
+    dt = difftool
+    tf = diff
+    df = diff
+
+[http]
+    postBuffer = 504857600
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = true
+    pager = true
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+[alias]
+    st = status
+    ci = commit
+    br = branch
+    co = checkout
+    df = diff
+    ds = diff --staged
+    dh1 = diff HEAD~1
+    pom = push origin master
+    amend = commit --amend
+    lg = log -p
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit --all --max-count=20
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    ls = ls-files
+
+  # Show files ignored by git:
+    ign = ls-files -o -i --exclude-standard
+
+  # Quick editing of all modified files
+    edm = !vim `git status | grep modified | awk '{print $3}'`
+    edr = !vim `git status | grep "both modified" | awk '{print $3}'`
+
+  # Force update from server (looses all local modifications!)
+    force-update = !git fetch; git reset --hard FETCH_HEAD
+
+[push]
+    default = tracking

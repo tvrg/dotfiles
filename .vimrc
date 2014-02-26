@@ -17,6 +17,10 @@ set ttimeoutlen=0
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 set history=1000		" keep 50 lines of command line history
+set undofile
+set undolevels=1000
+set undoreload=1000
+set undodir=$HOME/.vimundo/
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set showmode
@@ -52,7 +56,13 @@ set grepprg=grep\ -nH\ $*
 
 " search in current directory and work up the tree towards root until one is
 " found
-set tags=tags;/
+set tags=.git/tags
+
+if ! exists('g:TagHighlightSettings')
+    let g:TagHighlightSettings = {}
+endif
+let g:TagHighlightSettings['TagFileName'] = '.git/tags'
+let g:TagHighlightSettings['TypesFileDirectory']=".git"
 
 " allow unsing the mouse
 set mouse=a
@@ -73,6 +83,8 @@ if has("autocmd")
     au BufRead,BufNewFile *.he  set filetype=c
     au BufRead,BufNewFile *.hdb  set filetype=c
     au BufRead,BufNewFile *.cu  set filetype=c
+
+    au FileType ruby nnoremap <leader>rr :!ruby %<CR>
 
     " Enable file type detection.
     " Use the default filetype settings, so that mail gets 'tw' set to 72,
@@ -175,6 +187,11 @@ nnoremap * *zz
 nnoremap # #zz
 nnoremap g* g*zz
 nnoremap g# g#zz
+
+" go to first tab
+nnoremap <silent> g0 :tabfirst<CR>
+" go to last tab
+nnoremap <silent> g$ :tablast<CR>
 
 nnoremap <C-l> <C-w><C-l>
 nnoremap <C-h> <C-w><C-h>

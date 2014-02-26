@@ -3,6 +3,7 @@
     email = wienecke.t@gmail.com
 [core]
     editor = vim
+	pager = less -F -X
 [diff]
     tool = vimdiff
 [difftool]

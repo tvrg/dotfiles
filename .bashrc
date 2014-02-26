@@ -103,22 +103,11 @@ alias n='note.sh'
 alias d='dict -s word'
 alias lslah='ls -lah'
 
-gtr(){
-    wget -qO- "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=$1&langpair=$2|${3:-en}" | sed 's/.*"translatedText":"\([^"]*\)".*}/\1\n/';
-}
-
-en(){
-    wget -qO- "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=$1&langpair=de|en" | sed 's/.*"translatedText":"\([^"]*\)".*}/\1\n/';
-}
-
-es(){
-    wget -qO- "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=$1&langpair=es|de" | sed 's/.*"translatedText":"\([^"]*\)".*}/\1\n/';
-}
-
 #git prompt
 function parse_git_dirty {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+    [[ $(git diff-index --quiet --cached HEAD 2> /dev/null) ]] && echo "*"
 }
+
 function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
 }
@@ -141,3 +130,7 @@ export PATH="/home/thomas/perl5/bin:$PATH";
 
 # fix for some color-problems using vim
 set term=screen-256color
+
+export PATH="$PATH:/home/thomas/.i3/bin:/home/thomas/qt/Tools/QtCreator/bin"
+
+export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

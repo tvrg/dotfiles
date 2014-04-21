@@ -84,6 +84,8 @@ if has("autocmd")
     au BufRead,BufNewFile *.hdb  set filetype=c
     au BufRead,BufNewFile *.cu  set filetype=c
 
+    au BufRead,BufNewFile *.moon set filetype=lua
+
     au FileType ruby nnoremap <leader>rr :!ruby %<CR>
 
     " Enable file type detection.
@@ -109,6 +111,8 @@ if has("autocmd")
     augroup END
 
     autocmd FileType ruby set sw=2 ts=2
+    autocmd FileType lua set sw=2 ts=2
+    autocmd FileType c set sw=2 ts=2
 
     au BufWinLeave *.* mkview
     au BufWinEnter *.* silent loadview
@@ -126,7 +130,11 @@ if has("autocmd")
     nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
     au TabLeave * let g:lasttab = tabpagenr()
 
-    au FileType tex nnoremap <leader>rr :!pdflatex %<CR>
+    au FileType tex let b:tex_flavor='pdflatex'
+    au FileType tex compiler tex
+    au FileType tex set makeprg=pdflatex\ \-file\-line\-error\ \-interaction=nonstopmode\ $*\\\|\ grep\ \-P\ ':\\d{1,5}:\ '
+    au FileType tex set errorformat=%f:%l:\ %m
+    au FileType tex nnoremap <leader>rr :make %<CR>:cwindow<CR>
 endif " has("autocmd")
 
 " open NERDtree

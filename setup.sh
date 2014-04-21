@@ -6,6 +6,7 @@ link_list+=("i3bin:$HOME/.i3/bin")
 link_list+=("bashrc:$HOME/.bashrc")
 link_list+=("inputrc:$HOME/.inputrc")
 link_list+=("vimrc:$HOME/.vimrc")
+link_list+=("nvimrc:$HOME/.nvimrc")
 link_list+=("gitconfig:$HOME/.gitconfig")
 
 function make_link() {

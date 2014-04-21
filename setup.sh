@@ -2,6 +2,7 @@
 
 link_list=()
 link_list+=("i3config:$HOME/.i3/config")
+link_list+=("i3bin:$HOME/.i3/bin")
 link_list+=("bashrc:$HOME/.bashrc")
 link_list+=("inputrc:$HOME/.inputrc")
 link_list+=("vimrc:$HOME/.vimrc")

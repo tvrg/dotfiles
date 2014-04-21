@@ -14,6 +14,8 @@ function make_link() {
     then
         echo "ln -s \"$1\" \"$2\""
         ln -s $1 $2
+    else
+        echo "Target \"$2\" already exists - skipping."
     fi
 }
 

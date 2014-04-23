@@ -134,7 +134,7 @@ if has("autocmd")
     au FileType tex compiler tex
     au FileType tex set makeprg=pdflatex\ \-file\-line\-error\ \-interaction=nonstopmode\ $*\\\|\ grep\ \-P\ ':\\d{1,5}:\ '
     au FileType tex set errorformat=%f:%l:\ %m
-    au FileType tex nnoremap <leader>rr :make %<CR>:cwindow<CR>
+    au FileType tex nnoremap <leader>rr :w<CR>:make %<CR>:cwindow<CR>
 endif " has("autocmd")
 
 " open NERDtree

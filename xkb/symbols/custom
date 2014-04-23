@@ -26,6 +26,11 @@ xkb_symbols "dvp" {
 
     key <AD03> { [ period,          greater,        guillemotright, NoSymbol, Up, Up              ] };
 
+    key <AD01> { [ semicolon,       colon,          Adiaeresis              ] };
+    key <AD02> { [ comma,           less,           Odiaeresis               ] };
+    key <AD04> { [ p,               P,              Udiaeresis,       section    ] };
+
+    key <AC01> { [ a,               A,              adiaeresis,          Ooblique, Left, Left   ] };
     key <AC02> { [ o,               O,              odiaeresis,          Ooblique, Left, Left   ] };
     key <AC03> { [ e,               E,              EuroSign,              AE, Down, Down         ] };
     key <AC04> { [ u,               U,              udiaeresis,          Eacute, Right, Right     ] };

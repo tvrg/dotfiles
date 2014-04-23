@@ -9,7 +9,6 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 
-exec "$HOME/.i3/bin/dvorak_switch.sh"
 exec "pa-applet"
 exec "nm-applet"
 
@@ -20,7 +19,7 @@ bindcode $mod+32 exec "$HOME/.i3/bin/hibernateandlock"
 bindcode $mod+28 exec "/usr/bin/touchpad-toggle.sh"
 
 bindcode $mod+42 exec "setxkbmap de"
-bindcode $mod+48 exec "$HOME/.i3/bin/dvorak_switch.sh"
+bindcode $mod+48 exec "$HOME/.i3/bin/switch_to_dvorak"
 
 bindcode $mod+Shift+Control+44 move workspace to output right
 bindcode $mod+Shift+Control+47 move workspace to output left
@@ -162,3 +161,5 @@ bindcode $mod+27 mode "resize"
 bar {
         status_command i3status
 }
+
+exec "/home/thomas/.i3/bin/switch_to_dvorak"

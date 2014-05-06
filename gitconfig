@@ -2,10 +2,10 @@
     name = Thomas Wienecke
     email = wienecke.t@gmail.com
 [core]
-    editor = vim
+    editor = nvim
 	pager = less -F -X
 [diff]
-    tool = vimdiff
+    tool = nvim -d
 [difftool]
     prompt = false
 [alias]
@@ -54,8 +54,8 @@
     ign = ls-files -o -i --exclude-standard
 
   # Quick editing of all modified files
-    edm = !vim `git status | grep modified | awk '{print $3}'`
-    edr = !vim `git status | grep "both modified" | awk '{print $3}'`
+    edm = !nvim `git status | grep modified | awk '{print $3}'`
+    edr = !nvim `git status | grep "both modified" | awk '{print $3}'`
 
   # Force update from server (looses all local modifications!)
     force-update = !git fetch; git reset --hard FETCH_HEAD

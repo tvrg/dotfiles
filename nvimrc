@@ -159,6 +159,8 @@ if has("autocmd")
     au TabLeave * let g:lasttab = tabpagenr()
 
     au FileType tex nnoremap <leader>rr :!pdflatex %<CR>
+
+    au FileType python nnoremap <leader>rr :w<CR>:!python %<CR>
 endif " has("autocmd")
 
 " open NERDtree
@@ -258,3 +260,18 @@ nnoremap <silent> gr :call GitReplaceWordUnderCursor()<CR>
 
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
       \ | wincmd p | diffthis
+
+if executable('xclip')
+" use the x11 clipboard as the main storage for shared yank data
+" tmux should also be configured to use it
+    function! TmuxYank()
+      call system('xclip -i -selection clipboard', @t)
+    endfunction
+    function! TmuxPaste()
+      let @t = system('xclip -o -selection clipboard')
+    endfunction
+endif
+
+nnoremap <silent> <leader>p :silent call TmuxPaste()<CR>"tp
+nnoremap <silent> <leader>P :silent call TmuxPaste()<CR>"tP
+nnoremap <silent> <leader>y "ty:silent call TmuxYank()<CR>

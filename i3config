@@ -11,6 +11,7 @@
 
 exec "pa-applet"
 exec "nm-applet"
+exec "synclient touchpadoff=1"
 
 set $mod Mod1
 

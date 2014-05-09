@@ -274,4 +274,4 @@ endif
 
 nnoremap <silent> <leader>p :silent call TmuxPaste()<CR>"tp
 nnoremap <silent> <leader>P :silent call TmuxPaste()<CR>"tP
-nnoremap <silent> <leader>y "ty:silent call TmuxYank()<CR>
+vnoremap <silent> <leader>y "ty:silent call TmuxYank()<CR>

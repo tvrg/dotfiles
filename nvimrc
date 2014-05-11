@@ -147,8 +147,15 @@ if has("autocmd")
 
     au FileType tex nnoremap <leader>rr :!pdflatex %<CR>
 
-    au FileType python nnoremap <leader>rr :w<CR>:!python %<CR>
 endif " has("autocmd")
+
+function! SetupPython()
+    nnoremap <leader>rr :w<CR>:!python %<CR>
+endfunction
+
+if has("autocmd")
+    au FileType python call SetupPython()
+endif
 
 " open NERDtree
 map <Leader>n :NERDTreeToggle<CR>

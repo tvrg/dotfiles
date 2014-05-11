@@ -49,6 +49,7 @@
     lol = log --graph --decorate --pretty=oneline --abbrev-commit --all --max-count=20
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     ls = ls-files
+    task = !nvim .git/task
 
   # Show files ignored by git:
     ign = ls-files -o -i --exclude-standard

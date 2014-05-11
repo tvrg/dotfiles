@@ -1,16 +1,3 @@
-let g:pathogen_disabled = []
-
-" call add(g:pathogen_disabled, 'ctrlp')
-" call add(g:pathogen_disabled, 'fugitive')
-" call add(g:pathogen_disabled, 'moonscript')
-" call add(g:pathogen_disabled, 'nerdtree')
-" call add(g:pathogen_disabled, 'solarized')
-" call add(g:pathogen_disabled, 'unimpaired')
-" call add(g:pathogen_disabled, 'unittest')
-" call add(g:pathogen_disabled, 'vimwiki')
-" 
-" call add(g:pathogen_disabled, 'taghighlight')
-
 execute pathogen#infect()
 
 set nocompatible

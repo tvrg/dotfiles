@@ -1,16 +1,3 @@
-let g:pathogen_disabled = []
-
-" call add(g:pathogen_disabled, 'ctrlp')
-" call add(g:pathogen_disabled, 'fugitive')
-" call add(g:pathogen_disabled, 'moonscript')
-" call add(g:pathogen_disabled, 'nerdtree')
-" call add(g:pathogen_disabled, 'solarized')
-" call add(g:pathogen_disabled, 'unimpaired')
-" call add(g:pathogen_disabled, 'unittest')
-" call add(g:pathogen_disabled, 'vimwiki')
-" 
-" call add(g:pathogen_disabled, 'taghighlight')
-
 execute pathogen#infect()
 
 set nocompatible
@@ -160,8 +147,15 @@ if has("autocmd")
 
     au FileType tex nnoremap <leader>rr :!pdflatex %<CR>
 
-    au FileType python nnoremap <leader>rr :w<CR>:!python %<CR>
 endif " has("autocmd")
+
+function! SetupPython()
+    nnoremap <leader>rr :w<CR>:!python %<CR>
+endfunction
+
+if has("autocmd")
+    au FileType python call SetupPython()
+endif
 
 " open NERDtree
 map <Leader>n :NERDTreeToggle<CR>

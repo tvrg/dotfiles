@@ -25,3 +25,6 @@
 [submodule "nvim/bundle/vimwiki"]
 	path = nvim/bundle/vimwiki
 	url = git@github.com:vimwiki/vimwiki.git
+[submodule "nvim/bundle/vim-addon-mw-utils"]
+	path = nvim/bundle/vim-addon-mw-utils
+	url = git@github.com:MarcWeber/vim-addon-mw-utils.git

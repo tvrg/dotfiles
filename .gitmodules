@@ -13,3 +13,6 @@
 [submodule "nvim/bundle/gitgutter"]
 	path = nvim/bundle/gitgutter
 	url = git@github.com:airblade/vim-gitgutter.git
+[submodule "nvim/bundle/nerdtree"]
+	path = nvim/bundle/nerdtree
+	url = git@github.com:scrooloose/nerdtree.git

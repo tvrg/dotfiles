@@ -3,7 +3,7 @@
     email = wienecke.t@gmail.com
 [core]
     editor = nvim
-	pager = less -F -X
+    pager = less -F -X
 [diff]
     tool = nvim -d
 [difftool]

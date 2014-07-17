@@ -8,7 +8,7 @@ let mapleader=','
 nnoremap \ ,
 
 set t_Co=16
-set background=dark
+set background=light
 colorscheme solarized
 call togglebg#map("<F5>")
 
@@ -127,6 +127,8 @@ if has("autocmd")
     autocmd FileType ruby set sw=2 ts=2
     autocmd FileType lua set sw=2 ts=2
     autocmd FileType c set sw=2 ts=2
+    autocmd FileType json set sw=2 ts=2
+    autocmd FileType javascript set sw=2 ts=2
     autocmd FileType cpp,c set comments^=b:///
 
     au BufWinLeave *.* mkview
@@ -153,8 +155,14 @@ function! SetupPython()
     nnoremap <leader>rr :w<CR>:!python %<CR>
 endfunction
 
+function! SetupJavascript()
+    nnoremap <leader>rr :w<CR>:!NODE_ENV=test mocha %<CR>
+    nnoremap <leader>ra :w<CR>:!make test<CR>
+endfunction
+
 if has("autocmd")
     au FileType python call SetupPython()
+    au FileType javascript call SetupJavascript()
 endif
 
 " open NERDtree
@@ -206,7 +214,7 @@ nnoremap ' `
 nnoremap ` '
 
 " map to switch off hlsearch
-nnoremap <silent> <leader>h :silent :nohlsearch<CR>
+nnoremap <silent> <leader>nh :silent :nohlsearch<CR>
 
 " center search results
 nnoremap n nzz

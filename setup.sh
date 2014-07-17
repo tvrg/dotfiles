@@ -6,6 +6,7 @@ link_list+=("i3bin:$HOME/.i3/bin")
 link_list+=("bashrc:$HOME/.bashrc")
 link_list+=("inputrc:$HOME/.inputrc")
 link_list+=("vimrc:$HOME/.vimrc")
+link_list+=("nvim:$HOME/.nvim")
 link_list+=("nvimrc:$HOME/.nvimrc")
 link_list+=("gitconfig:$HOME/.gitconfig")
 
@@ -18,6 +19,11 @@ function make_link() {
         echo "Target \"$2\" already exists - skipping."
     fi
 }
+
+git submodule init
+git submodule update
+mkdir -p nvim/autoload
+cp nvim/pathogen/autoload/pathogen.vim nvim/autoload/pathogen.vim
 
 for link in "${link_list[@]}"
 do

@@ -1,2 +1,2 @@
-echo "setxkbmap custom dvp -print | xkbcomp -I$HOME/dotfiles/xkb/ - :0" >> /home/thomas/debug.log
-setxkbmap custom dvp -print | xkbcomp -I$HOME/dotfiles/xkb/ - :0
+XKB_DIR=$(dirname $0)/xkb/
+setxkbmap custom dvp -print | xkbcomp -I$XKB_DIR - :0

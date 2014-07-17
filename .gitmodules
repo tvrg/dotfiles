@@ -7,3 +7,6 @@
 [submodule "nvim/bundle/solarized"]
 	path = nvim/bundle/solarized
 	url = git@github.com:altercation/vim-colors-solarized.git
+[submodule "nvim/bundle/fugitive"]
+	path = nvim/bundle/fugitive
+	url = git@github.com:tpope/vim-fugitive.git

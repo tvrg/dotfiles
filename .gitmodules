@@ -16,3 +16,6 @@
 [submodule "nvim/bundle/nerdtree"]
 	path = nvim/bundle/nerdtree
 	url = git@github.com:scrooloose/nerdtree.git
+[submodule "nvim/bundle/snipmate"]
+	path = nvim/bundle/snipmate
+	url = git@github.com:garbas/vim-snipmate.git

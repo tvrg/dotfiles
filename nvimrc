@@ -274,6 +274,10 @@ if executable('xclip')
     endfunction
 endif
 
-nnoremap <silent> <leader>p :silent call TmuxPaste()<CR>"tp
-nnoremap <silent> <leader>P :silent call TmuxPaste()<CR>"tP
-vnoremap <silent> <leader>y "ty:silent call TmuxYank()<CR>
+" enable clipboard integration
+if has('neovim')
+    let s:python_host_init = 'python -c "import neovim; neovim.start_host()"'
+    let &initpython = s:python_host_init
+    let &initclipboard = s:python_host_init
+    set unnamedclip
+endif

@@ -42,3 +42,7 @@
 	path = nvim/bundle/tlib
 	url = git@github.com:vim-scripts/tlib.git
     ignore = dirty
+[submodule "nvim/bundle/snippets"]
+	path = nvim/bundle/snippets
+	url = git@github.com:honza/vim-snippets.git
+    ignore = dirty

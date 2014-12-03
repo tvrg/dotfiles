@@ -1,15 +1,54 @@
-execute pathogen#infect()
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-set nocompatible
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'kien/ctrlp.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'mmozuras/snipmate-mocha'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'vim-scripts/vimwiki'
+Plugin 'Floobits/floobits-neovim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+if has('nvim')
+    runtime! python_setup.vim
+endif
+
 syntax on
-filetype plugin indent on
-
 let mapleader=','
 nnoremap \ ,
 
 set t_Co=16
-set background=dark
+set background=light
 colorscheme solarized
+call togglebg#map("<F5>")
 
 set ttimeout
 set ttimeoutlen=0
@@ -32,6 +71,8 @@ set smartindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
+set splitright " Put vertical splits to the right.
 
 " Allow to hide modified buffers.
 set hidden
@@ -68,6 +109,17 @@ let g:TagHighlightSettings['TypesFileDirectory']=".git"
 set mouse=a
 " always show statusline
 set laststatus=2
+
+" fugitive status line
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
+" show invisible characters
+set list
+" som alternatives: tab:▸\,eol:¬
+set listchars=tab:\|\ ,trail:…
+
+" clear trailing spaces on save
+"autocmd BufWritePre * kz|:%s/\s\+$//e|'z
 
 " Latex settings
 let g:tex_flavor='latex'
@@ -113,6 +165,9 @@ if has("autocmd")
     autocmd FileType ruby set sw=2 ts=2
     autocmd FileType lua set sw=2 ts=2
     autocmd FileType c set sw=2 ts=2
+    autocmd FileType json set sw=2 ts=2
+    autocmd FileType javascript set sw=2 ts=2
+    autocmd FileType cpp,c set comments^=b:///
 
     au BufWinLeave *.* mkview
     au BufWinEnter *.* silent loadview
@@ -130,14 +185,35 @@ if has("autocmd")
     nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
     au TabLeave * let g:lasttab = tabpagenr()
 
-    au FileType tex let b:tex_flavor='pdflatex'
-    au FileType tex compiler tex
-    au FileType tex set makeprg=pdflatex\ \-file\-line\-error\ \-interaction=nonstopmode\ $*\\\|\ grep\ \-P\ ':\\d{1,5}:\ '
-    au FileType tex set errorformat=%f:%l:\ %m
-    au FileType tex nnoremap <leader>rr :w<CR>:make %<CR>:cwindow<CR>
 
-    au FileType python nnoremap <leader>rr :w<CR>:!python %<CR>
 endif " has("autocmd")
+
+let g:tex_isk="48-57,a-z,A-Z,_,:,192-255"
+function! SetupLatex()
+    nnoremap <leader>rr :!make<CR>
+    nnoremap ]] :/label{.*:\zs.*\ze}<CR>
+    nnoremap [[ :?label{.*:\zs.*\ze}<CR>
+endfunction
+
+function! SetupPython()
+    nnoremap <leader>rr :w<CR>:!python %<CR>
+endfunction
+
+function! SetupJavascript()
+    nnoremap <leader>rr :w<CR>:!NODE_ENV=test mocha %<CR>
+    nnoremap <leader>ra :w<CR>:!make test<CR>
+endfunction
+
+function! SetupJava()
+    nnoremap <leader>rr :w<CR>:!gradle check<CR>
+endfunction
+
+if has("autocmd")
+    au FileType python call SetupPython()
+    au FileType javascript call SetupJavascript()
+    au FileType tex call SetupLatex()
+    au FileType java call SetupJava()
+endif
 
 " open NERDtree
 map <Leader>n :NERDTreeToggle<CR>
@@ -166,10 +242,10 @@ map <silent> <Leader>cn :cnext<Return>
 "autocmd FileType java set foldmethod=syntax
 map <silent> <Leader>zz :set foldmethod=syntax<CR>:set foldmethod=manual<CR>
 
-" edit vimrc
-map <silent> <Leader>rc :e ~/.vimrc<CR>
-" load vimrc
-map <silent> <Leader>rl :so ~/.vimrc<CR>
+" edit nvimrc
+map <silent> <Leader>rc :e ~/.nvimrc<CR>
+" load nvimrc
+map <silent> <Leader>rl :so ~/.nvimrc<CR>
 
 " some mappings for easy folding
 nmap <silent> <Leader>f0 :set foldlevel=0<CR>
@@ -187,16 +263,24 @@ nmap <silent> <Leader>f9 :set foldlevel=9<CR>
 nnoremap ' `
 nnoremap ` '
 
+" Don't allow gitgutter to map keys.
+let g:gitgutter_map_keys = 0
+
+" Custom ctrlp command.
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
 " map to switch off hlsearch
 nnoremap <silent> <leader>h :silent :nohlsearch<CR>
 
 " center search results
-nnoremap n nzz
-nnoremap N Nzz
-nnoremap * *zz
-nnoremap # #zz
-nnoremap g* g*zz
-nnoremap g# g#zz
+" nnoremap n nzz
+" nnoremap N Nzz
+" nnoremap * *zz
+" nnoremap # #zz
+" nnoremap g* g*zz
+" nnoremap g# g#zz
+nnoremap ]] ]]zz
+nnoremap [[ [[zz
 
 " go to first tab
 nnoremap <silent> g0 :tabfirst<CR>
@@ -214,3 +298,25 @@ vnoremap < <gv
 noremap <Up> gk
 noremap <Down> gj
 
+" Do not move when using *
+nnoremap <silent> * :let star_view=winsaveview()<CR>*:call winrestview(star_view)<CR>
+
+nnoremap <C-g> :execute "Ggrep '\\<" . expand('<cword>') . "\\>'"<CR>
+
+function! GitReplaceWord(to_replace, replacement)
+    execute "!git grep -l '\\<" . a:to_replace . "\\>' | xargs sed -i 's/\\b" .  a:to_replace . "\\b/" . a:replacement . "/g'"
+endfunction
+
+command! -nargs=* Greplace call GitReplaceWord(<f-args>)
+
+function! GitReplaceWordUnderCursor()
+    let to_replace = expand('<cword>')
+    let replacement = input('Replace ' . to_replace .' with: ')
+    call GitReplaceWord(to_replace, replacement)
+endfunction
+
+" Interactively replace word under cursor using git and sed.
+nnoremap <silent> gr :call GitReplaceWordUnderCursor()<CR>
+
+command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+      \ | wincmd p | diffthis

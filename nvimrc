@@ -1,9 +1,47 @@
-execute pathogen#infect()
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-set nocompatible
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'kien/ctrlp.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'mmozuras/snipmate-mocha'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'vim-scripts/vimwiki'
+Plugin 'Floobits/floobits-neovim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+if has('nvim')
+    runtime! python_setup.vim
+endif
+
 syntax on
-filetype plugin indent on
-
 let mapleader=','
 nnoremap \ ,
 
@@ -147,9 +185,15 @@ if has("autocmd")
     nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
     au TabLeave * let g:lasttab = tabpagenr()
 
-    au FileType tex nnoremap <leader>rr :!pdflatex %<CR>
 
 endif " has("autocmd")
+
+let g:tex_isk="48-57,a-z,A-Z,_,:,192-255"
+function! SetupLatex()
+    nnoremap <leader>rr :!make<CR>
+    nnoremap ]] :/label{.*:\zs.*\ze}<CR>
+    nnoremap [[ :?label{.*:\zs.*\ze}<CR>
+endfunction
 
 function! SetupPython()
     nnoremap <leader>rr :w<CR>:!python %<CR>
@@ -160,9 +204,15 @@ function! SetupJavascript()
     nnoremap <leader>ra :w<CR>:!make test<CR>
 endfunction
 
+function! SetupJava()
+    nnoremap <leader>rr :w<CR>:!gradle check<CR>
+endfunction
+
 if has("autocmd")
     au FileType python call SetupPython()
     au FileType javascript call SetupJavascript()
+    au FileType tex call SetupLatex()
+    au FileType java call SetupJava()
 endif
 
 " open NERDtree
@@ -213,16 +263,24 @@ nmap <silent> <Leader>f9 :set foldlevel=9<CR>
 nnoremap ' `
 nnoremap ` '
 
+" Don't allow gitgutter to map keys.
+let g:gitgutter_map_keys = 0
+
+" Custom ctrlp command.
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
 " map to switch off hlsearch
-nnoremap <silent> <leader>nh :silent :nohlsearch<CR>
+nnoremap <silent> <leader>h :silent :nohlsearch<CR>
 
 " center search results
-nnoremap n nzz
-nnoremap N Nzz
-nnoremap * *zz
-nnoremap # #zz
-nnoremap g* g*zz
-nnoremap g# g#zz
+" nnoremap n nzz
+" nnoremap N Nzz
+" nnoremap * *zz
+" nnoremap # #zz
+" nnoremap g* g*zz
+" nnoremap g# g#zz
+nnoremap ]] ]]zz
+nnoremap [[ [[zz
 
 " go to first tab
 nnoremap <silent> g0 :tabfirst<CR>
@@ -262,22 +320,3 @@ nnoremap <silent> gr :call GitReplaceWordUnderCursor()<CR>
 
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
       \ | wincmd p | diffthis
-
-if executable('xclip')
-" use the x11 clipboard as the main storage for shared yank data
-" tmux should also be configured to use it
-    function! TmuxYank()
-      call system('xclip -i -selection clipboard', @t)
-    endfunction
-    function! TmuxPaste()
-      let @t = system('xclip -o -selection clipboard')
-    endfunction
-endif
-
-" enable clipboard integration
-if has('neovim')
-    let s:python_host_init = 'python -c "import neovim; neovim.start_host()"'
-    let &initpython = s:python_host_init
-    let &initclipboard = s:python_host_init
-    set unnamedclip
-endif

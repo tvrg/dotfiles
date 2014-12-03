@@ -22,6 +22,8 @@ function make_link() {
 git submodule init
 git submodule update
 
+git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
 for link in "${link_list[@]}"
 do
     src="$(pwd)/$(echo $link | cut -d':' -f1)"

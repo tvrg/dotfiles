@@ -20,7 +20,10 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'mmozuras/snipmate-mocha'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-scripts/vimwiki'
-Plugin 'Floobits/floobits-neovim'
+
+if has('nvim')
+    Plugin 'Floobits/floobits-neovim'
+endif
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

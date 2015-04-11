@@ -20,10 +20,9 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'mmozuras/snipmate-mocha'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-scripts/vimwiki'
-
-if has('nvim')
-    Plugin 'Floobits/floobits-neovim'
-endif
+Plugin 'Shutnik/jshint2.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'janko-m/vim-test'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -39,10 +38,6 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-
-if has('nvim')
-    runtime! python_setup.vim
-endif
 
 syntax on
 let mapleader=','
@@ -131,6 +126,8 @@ let g:localvimrc_ask = 1
 " enable mouse inside vimwiki
 let g:vimwiki_use_mouse=1
 
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+
 let g:xml_syntax_folding=1
 
 " Only do this part when compiled with support for autocommands.
@@ -193,7 +190,7 @@ endif " has("autocmd")
 
 let g:tex_isk="48-57,a-z,A-Z,_,:,192-255"
 function! SetupLatex()
-    nnoremap <leader>rr :!make<CR>
+    nnoremap <leader>rr :!make pdf<CR>
     nnoremap ]] :/label{.*:\zs.*\ze}<CR>
     nnoremap [[ :?label{.*:\zs.*\ze}<CR>
 endfunction
@@ -241,6 +238,9 @@ nmap <silent> - :vertical resize -4<CR>
 map <silent> <Leader>cc :make %<Return>:cw<Return>
 map <silent> <Leader>cp :cprevious<Return>
 map <silent> <Leader>cn :cnext<Return>
+
+map <silent> <Leader>lp :lprevious<Return>
+map <silent> <Leader>ln :lnext<Return>
 
 "autocmd FileType java set foldmethod=syntax
 map <silent> <Leader>zz :set foldmethod=syntax<CR>:set foldmethod=manual<CR>
@@ -304,7 +304,7 @@ noremap <Down> gj
 " Do not move when using *
 nnoremap <silent> * :let star_view=winsaveview()<CR>*:call winrestview(star_view)<CR>
 
-nnoremap <C-g> :execute "Ggrep '\\<" . expand('<cword>') . "\\>'"<CR>
+"nnoremap <C-g> :execute "Ggrep '\\<" . expand('<cword>') . "\\>'"<CR>
 
 function! GitReplaceWord(to_replace, replacement)
     execute "!git grep -l '\\<" . a:to_replace . "\\>' | xargs sed -i 's/\\b" .  a:to_replace . "\\b/" . a:replacement . "/g'"
@@ -323,3 +323,20 @@ nnoremap <silent> gr :call GitReplaceWordUnderCursor()<CR>
 
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
       \ | wincmd p | diffthis
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['jshint']
+
+if has("nvim")
+    tnoremap <C-l> <C-\><C-n><C-w><C-l>
+    tnoremap <C-h> <C-\><C-n><C-w><C-h>
+    tnoremap <C-j> <C-\><C-n><C-w><C-j>
+    tnoremap <C-k> <C-\><C-n><C-w><C-k>
+endif

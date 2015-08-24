@@ -23,6 +23,9 @@ Plugin 'vim-scripts/vimwiki'
 Plugin 'Shutnik/jshint2.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'janko-m/vim-test'
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'raichoo/purescript-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -139,6 +142,7 @@ if has("autocmd")
     au BufRead,BufNewFile *.moon set filetype=lua
 
     au FileType ruby nnoremap <leader>rr :!ruby %<CR>
+
 
     " Enable file type detection.
     " Use the default filetype settings, so that mail gets 'tw' set to 72,
@@ -266,6 +270,8 @@ nmap <silent> <Leader>f9 :set foldlevel=9<CR>
 nnoremap ' `
 nnoremap ` '
 
+nnoremap K k
+
 " Don't allow gitgutter to map keys.
 let g:gitgutter_map_keys = 0
 
@@ -333,10 +339,18 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_tex_checkers = ['chktex']
 
 if has("nvim")
     tnoremap <C-l> <C-\><C-n><C-w><C-l>
     tnoremap <C-h> <C-\><C-n><C-w><C-h>
     tnoremap <C-j> <C-\><C-n><C-w><C-j>
     tnoremap <C-k> <C-\><C-n><C-w><C-k>
+
+    au WinEnter * if &buftype == 'terminal' | startinsert | endif
+endif
+
+
+if has('nvim')
+    call rpcrequest(rpcstart(expand('$HOME/bin/nvim-hs-devel.sh')), "PingNvimhs")
 endif

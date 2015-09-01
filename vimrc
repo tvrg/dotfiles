@@ -174,7 +174,7 @@ if has("autocmd")
     autocmd FileType cpp,c set comments^=b:///
 
     au BufWinLeave *.* mkview
-    au BufWinEnter *.* silent loadview
+    au BufWinEnter *.* silent! loadview
 
 
     " enable vimwiki foldings
@@ -351,6 +351,6 @@ if has("nvim")
 endif
 
 
-if has('nvim')
+if has('nvim') && executable('$HOME/bin/nvim-hs-devel.sh')
     call rpcrequest(rpcstart(expand('$HOME/bin/nvim-hs-devel.sh')), "PingNvimhs")
 endif

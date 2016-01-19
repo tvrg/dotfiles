@@ -54,12 +54,5 @@
   # Show files ignored by git:
     ign = ls-files -o -i --exclude-standard
 
-  # Quick editing of all modified files
-    edm = !nvim `git status | grep modified | awk '{print $3}'`
-    edr = !nvim `git status | grep "both modified" | awk '{print $3}'`
-
-  # Force update from server (looses all local modifications!)
-    force-update = !git fetch; git reset --hard FETCH_HEAD
-
 [push]
     default = tracking

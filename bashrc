@@ -93,14 +93,11 @@ alias l='ls -CF'
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
+
 export EDITOR='vim'
 
-alias t='todo.sh'
 set -o vi
 
-alias t='todo.sh'
-alias n='note.sh'
-alias d='dict -s word'
 alias lslah='ls -lah'
 
 #git prompt
@@ -111,26 +108,12 @@ function parse_git_dirty {
 function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
 }
+
 export PS1='\u@\h \[\033[1;33m\]\w\[\033[0m\]$(parse_git_branch)$ '
-#export TERM=xterm-256color
 
 function git_diff() {
     git diff --no-ext-diff -w "$@" | vim -R -
 }
 
-export CSCOPE_DB=/home/thomas/cscope/*.out
-
-#todo.sh list
-
-export PERL_LOCAL_LIB_ROOT="/home/thomas/perl5";
-export PERL_MB_OPT="--install_base /home/thomas/perl5";
-export PERL_MM_OPT="INSTALL_BASE=/home/thomas/perl5";
-export PERL5LIB="/home/thomas/perl5/lib/perl5/i686-linux-gnu-thread-multi-64int:/home/thomas/perl5/lib/perl5";
-export PATH="/home/thomas/perl5/bin:$PATH";
-
 # fix for some color-problems using vim
 set term=screen-256color
-
-export PATH="$PATH:/home/thomas/.i3/bin:/home/thomas/qt/Tools/QtCreator/bin"
-
-export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

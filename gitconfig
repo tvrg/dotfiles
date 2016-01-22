@@ -2,10 +2,10 @@
     name = Thomas Wienecke
     email = wienecke.t@gmail.com
 [core]
-    editor = vim
+    editor = nvim
     pager = less -F -X
 [diff]
-    tool = vim -d
+    tool = nvim -d
 [difftool]
     prompt = false
 [alias]
@@ -49,14 +49,14 @@
     lol = log --graph --decorate --pretty=oneline --abbrev-commit --all --max-count=20
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     ls = ls-files
-    task = !vim .git/task
+    task = !nvim .git/task
 
   # Show files ignored by git:
     ign = ls-files -o -i --exclude-standard
 
   # Quick editing of all modified files
-    edm = !vim `git status | grep modified | awk '{print $3}'`
-    edr = !vim `git status | grep "both modified" | awk '{print $3}'`
+    edm = !nvim `git status | grep modified | awk '{print $3}'`
+    edr = !nvim `git status | grep "both modified" | awk '{print $3}'`
 
   # Force update from server (looses all local modifications!)
     force-update = !git fetch; git reset --hard FETCH_HEAD

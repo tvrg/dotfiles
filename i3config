@@ -8,12 +8,16 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-
 exec "pa-applet"
 exec "nm-applet"
 exec "synclient touchpadoff=1"
 
-set $mod Mod1
+set $mod Mod4
+
+client.focused          #3F8AC2 #096BAA #00BAA7 #00DA8E
+client.focused_inactive #333333 #5F676A #ffffff #484e50
+client.unfocused        #333333 #424242 #888888 #292d2e
+client.urgent           #C10004 #900000 #ffffff #900000
 
 bindcode $mod+29 exec "$HOME/.i3/bin/suspendandlock"
 bindcode $mod+32 exec "$HOME/.i3/bin/hibernateandlock"
@@ -28,12 +32,14 @@ bindcode $mod+Shift+Control+47 move workspace to output left
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
-font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
 # font pango:DejaVu Sans Mono 10
+
+font pango: Ubuntu Mono 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -161,7 +167,11 @@ bindcode $mod+27 mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+    status_command i3status
+    colors {
+        background #232323
+        statusline #DCDCDC
+    }
 }
 
 exec "/home/thomas/.i3/bin/switch_to_dvorak"

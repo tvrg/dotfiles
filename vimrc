@@ -1,55 +1,36 @@
-set nocompatible              " be iMproved, required
+if !has("nvim")
+    set nocompatible              " be iMproved, required
+endif
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+call plug#begin('~/.vim/bundle')
+Plug 'tpope/vim-fugitive'
+Plug 'kien/ctrlp.vim', { 'on': 'CtrlPMRUFiles' }
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'mmozuras/snipmate-mocha'
+Plug 'altercation/vim-colors-solarized'
+Plug 'vimwiki/vimwiki'
+Plug 'Shutnik/jshint2.vim'
+Plug 'benekastah/neomake'
+Plug 'janko-m/vim-test'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'raichoo/purescript-vim'
+Plug 'neovimhaskell/haskell-vim'
+Plug 'mpickering/hlint-refactor-vim'
+Plug 'Twinside/vim-haskellFold'
+call plug#end()
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-Plugin 'tpope/vim-fugitive'
-Plugin 'kien/ctrlp.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'mmozuras/snipmate-mocha'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'vim-scripts/vimwiki'
-Plugin 'Shutnik/jshint2.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'janko-m/vim-test'
-Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
-Plugin 'raichoo/purescript-vim'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+filetype plugin indent on
 
 syntax on
 let mapleader=','
 nnoremap \ ,
-
-set t_Co=16
-set background=light
-colorscheme solarized
-call togglebg#map("<F5>")
 
 set ttimeout
 set ttimeoutlen=0
@@ -94,11 +75,22 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set ignorecase
 set smartcase
 
-set grepprg=grep\ -nH\ $*
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+else
+    set grepprg=grep\ -nH\ $*
+endif
+
+" bind K to grep word under cursor
+nnoremap K :set noincsearch<CR>:grep! "\b<C-R><C-W>\b"<CR>:cw<CR>:set incsearch<CR>
 
 " search in current directory and work up the tree towards root until one is
 " found
-set tags=.git/tags
+set tags+=.git/tags
+set tags+=tags
+set tags+=TAGS
 
 if ! exists('g:TagHighlightSettings')
     let g:TagHighlightSettings = {}
@@ -212,15 +204,22 @@ function! SetupJava()
     nnoremap <leader>rr :w<CR>:!gradle check<CR>
 endfunction
 
+function! SetupHaskell()
+    set foldmethod=indent
+    set foldopen-=block
+endfunction
+
 if has("autocmd")
     au FileType python call SetupPython()
     au FileType javascript call SetupJavascript()
     au FileType tex call SetupLatex()
     au FileType java call SetupJava()
+    au FileType haskell call SetupHaskell()
 endif
 
 " open NERDtree
 map <Leader>n :NERDTreeToggle<CR>
+map <Leader>rf :NERDTreeFind<CR>
 
 " easy copy and paste with gui-clipboard
 map <Leader>p "+p
@@ -270,13 +269,19 @@ nmap <silent> <Leader>f9 :set foldlevel=9<CR>
 nnoremap ' `
 nnoremap ` '
 
-nnoremap K k
-
 " Don't allow gitgutter to map keys.
 let g:gitgutter_map_keys = 0
 
 " Custom ctrlp command.
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_user_command = {
+  \ 'types': {
+    \ 1: ['.git', 'cd %s && git ls-files'],
+    \ 2: ['_darcs', 'cd %s && darcs show files --no-pending --no-directories'],
+    \ },
+  \ 'fallback': 'find %s -type f'
+  \ }
+let g:ctrlp_cmd = 'CtrlPMRUFiles'
+nnoremap <C-p> :CtrlPMRUFiles<CR>
 
 " map to switch off hlsearch
 nnoremap <silent> <leader>h :silent :nohlsearch<CR>
@@ -301,6 +306,8 @@ nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 
+nnoremap <C-@> <C-^>
+
 " keep in visual-mode after shifting with >/<
 vnoremap > >gv
 vnoremap < <gv
@@ -309,6 +316,9 @@ noremap <Down> gj
 
 " Do not move when using *
 nnoremap <silent> * :let star_view=winsaveview()<CR>*:call winrestview(star_view)<CR>
+
+" Open tags in vertical splits
+nnoremap <C-w>] :vsp<CR>:exec("tag ".expand("<cword>"))<CR>
 
 "nnoremap <C-g> :execute "Ggrep '\\<" . expand('<cword>') . "\\>'"<CR>
 
@@ -330,16 +340,19 @@ nnoremap <silent> gr :call GitReplaceWordUnderCursor()<CR>
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
       \ | wincmd p | diffthis
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 0
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_javascript_checkers = ['jshint']
+"let g:syntastic_tex_checkers = ['chktex']
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_tex_checkers = ['chktex']
+let g:neomake_haskell_enabled_makers = ['hlint', 'hdevtools']
+autocmd! BufWritePost * Neomake
 
 if has("nvim")
     tnoremap <C-l> <C-\><C-n><C-w><C-l>
@@ -350,7 +363,17 @@ if has("nvim")
     au WinEnter * if &buftype == 'terminal' | startinsert | endif
 endif
 
+let g:haskell_indent_if = 3
+let g:haskell_indent_case = 2
+let g:haskell_indent_let = 4
+let g:haskell_indent_where = 2
+let g:haskell_indent_do = 3
+let g:haskell_indent_in = 1
 
 if has('nvim') && executable('$HOME/bin/nvim-hs-devel.sh')
     call rpcrequest(rpcstart(expand('$HOME/bin/nvim-hs-devel.sh')), "PingNvimhs")
 endif
+
+call togglebg#map("<F5>")
+set background=light
+autocmd! VimEnter * colorscheme solarized

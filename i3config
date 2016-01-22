@@ -1,6 +1,7 @@
 exec "pa-applet"
 exec "nm-applet"
 exec "synclient touchpadoff=1"
+exec "$HOME/.i3/bin/switch_to_dvorak"
 
 set $mod Mod4
 
@@ -27,8 +28,6 @@ bindcode $mod+Shift+Control+47 move workspace to output left
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-# font pango:DejaVu Sans Mono 10
-
 font pango: Ubuntu Mono 11
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -163,5 +162,3 @@ bar {
         statusline #DCDCDC
     }
 }
-
-exec "/home/thomas/.i3/bin/switch_to_dvorak"

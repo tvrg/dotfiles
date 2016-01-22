@@ -14,7 +14,7 @@
     df = diff
 
 [http]
-    postBuffer = 504857600
+	postBuffer = 1048576000
 [color]
     diff = auto
     status = auto

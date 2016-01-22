@@ -249,9 +249,9 @@ map <silent> <Leader>ln :lnext<Return>
 map <silent> <Leader>zz :set foldmethod=syntax<CR>:set foldmethod=manual<CR>
 
 " edit nvimrc
-map <silent> <Leader>rc :e ~/.nvimrc<CR>
+map <silent> <Leader>rc :e ~/.config/nvim/init.vim<CR>
 " load nvimrc
-map <silent> <Leader>rl :so ~/.nvimrc<CR>
+map <silent> <Leader>rl :so ~/.config/nvim/init.vim<CR>
 
 " some mappings for easy folding
 nmap <silent> <Leader>f0 :set foldlevel=0<CR>

@@ -4,7 +4,11 @@ endif
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-call plug#begin('~/.vim/bundle')
+if has("nvim")
+    call plug#begin('~/.nvim/bundle')
+else
+    call plug#begin('~/.vim/bundle')
+endif
 Plug 'tpope/vim-fugitive'
 Plug 'kien/ctrlp.vim', { 'on': 'CtrlPMRUFiles' }
 Plug 'airblade/vim-gitgutter'
@@ -24,6 +28,7 @@ Plug 'raichoo/purescript-vim'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'mpickering/hlint-refactor-vim'
 Plug 'Twinside/vim-haskellFold'
+Plug 'jalvesaq/Nvim-R'
 call plug#end()
 
 filetype plugin indent on
@@ -76,12 +81,12 @@ set ignorecase
 set smartcase
 
 " The Silver Searcher
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-else
-    set grepprg=grep\ -nH\ $*
-endif
+" if executable('ag')
+"   " Use ag over grep
+"   set grepprg=ag\ --nogroup\ --nocolor
+" else
+"     set grepprg=grep\ -nH\ $*
+" endif
 
 " bind K to grep word under cursor
 nnoremap K :set noincsearch<CR>:grep! "\b<C-R><C-W>\b"<CR>:cw<CR>:set incsearch<CR>
@@ -205,6 +210,9 @@ function! SetupJava()
 endfunction
 
 function! SetupHaskell()
+    set grepprg=hg\ $*\ --color=never
+    nnoremap <leader>rr :Neomake remote<CR>
+    nnoremap <leader>rt :botright new<CR>:terminal scripts/build-remotely.sh test<CR>
     set foldmethod=indent
     set foldopen-=block
 endfunction
@@ -351,8 +359,16 @@ command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
 "let g:syntastic_javascript_checkers = ['jshint']
 "let g:syntastic_tex_checkers = ['chktex']
 
-let g:neomake_haskell_enabled_makers = ['hlint', 'hdevtools']
+let g:neomake_haskell_enabled_makers = ['hlint']
 autocmd! BufWritePost * Neomake
+
+let g:neomake_haskell_remote_maker = {
+    \ 'exe': './scripts/build-remotely.sh',
+    \ 'args': ['build'],
+    \ 'append_file': 0,
+    \ 'errorformat': '%E%f:%l:%c: %m,'.'%W%f:%l:c: Warning: %m,'.'%C%m'
+    \ }
+let g:neomake_ft_maker_remove_invalid_entries = 1
 
 if has("nvim")
     tnoremap <C-l> <C-\><C-n><C-w><C-l>

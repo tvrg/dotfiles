@@ -7,6 +7,7 @@ link_list+=("bashrc:$HOME/.bashrc")
 link_list+=("inputrc:$HOME/.inputrc")
 link_list+=("vimrc:$HOME/.vimrc")
 link_list+=("vimrc:$HOME/.nvimrc")
+link_list+=("vimrc:$HOME/.config/nvim/init.vim")
 link_list+=("gitconfig:$HOME/.gitconfig")
 
 function make_link() {
@@ -22,7 +23,10 @@ function make_link() {
 git submodule init
 git submodule update
 
-git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 for link in "${link_list[@]}"
 do

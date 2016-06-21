@@ -17,6 +17,7 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
 Plug 'mmozuras/snipmate-mocha'
+Plug 'honza/vim-snippets'
 Plug 'altercation/vim-colors-solarized'
 Plug 'vimwiki/vimwiki'
 Plug 'Shutnik/jshint2.vim'
@@ -29,6 +30,8 @@ Plug 'neovimhaskell/haskell-vim'
 Plug 'mpickering/hlint-refactor-vim'
 Plug 'Twinside/vim-haskellFold'
 Plug 'jalvesaq/Nvim-R'
+Plug 'tpope/vim-surround'
+Plug 'leafgarland/typescript-vim'
 call plug#end()
 
 filetype plugin indent on
@@ -370,6 +373,8 @@ let g:neomake_haskell_remote_maker = {
     \ }
 let g:neomake_ft_maker_remove_invalid_entries = 1
 
+let g:neomake_tex_enabled_makers = ['chktex']
+
 if has("nvim")
     tnoremap <C-l> <C-\><C-n><C-w><C-l>
     tnoremap <C-h> <C-\><C-n><C-w><C-h>
@@ -393,3 +398,6 @@ endif
 call togglebg#map("<F5>")
 set background=light
 autocmd! VimEnter * colorscheme solarized
+
+nnoremap <Space> :exec "normal i".nr2char(getchar())."\e"<CR>
+nnoremap S :exec "normal a".nr2char(getchar())."\e"<CR>

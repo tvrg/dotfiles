@@ -50,9 +50,12 @@
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     ls = ls-files
     task = !nvim .git/task
+    difftex = difftool -y -t latex
 
   # Show files ignored by git:
     ign = ls-files -o -i --exclude-standard
 
 [push]
     default = tracking
+[difftool.latex]
+    cmd = latexdiff --flatten "$LOCAL" "$REMOTE"

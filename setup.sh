@@ -9,12 +9,18 @@ link_list+=("vimrc:$HOME/.vimrc")
 link_list+=("vimrc:$HOME/.nvimrc")
 link_list+=("vimrc:$HOME/.config/nvim/init.vim")
 link_list+=("gitconfig:$HOME/.gitconfig")
+link_list+=("dunstrc:$HOME/.config/dunst/dunstrc")
+
+function verbose_eval() {
+    echo "$1" & eval "$1"
+}
 
 function make_link() {
     if [ ! -e $2 ]
     then
-        echo "ln -s \"$1\" \"$2\""
-        ln -s $1 $2
+        directory=$(dirname $2)
+        verbose_eval "mkdir -p \"$directory\""
+        verbose_eval "ln -s \"$1\" \"$2\""
     else
         echo "Target \"$2\" already exists - skipping."
     fi

@@ -181,9 +181,6 @@ if has("autocmd")
     autocmd FileType vimwiki let g:vimwiki_folding=1
     autocmd FileType vimwiki let g:vimwiki_fold_lists=1
 
-    autocmd FileType java set makeprg=ant
-    autocmd FileType java set efm=\ %#[javac]\ %#%f:%l:%c:%*\\d:\ %t%[%^:]%#:%m,\%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
-
     " shortcut go to last active tab
     let g:lasttab = 1
     nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
@@ -210,6 +207,7 @@ endfunction
 
 function! SetupJava()
     nnoremap <leader>rr :w<CR>:!gradle check<CR>
+    set noexpandtab
 endfunction
 
 function! SetupHaskell()
@@ -374,6 +372,8 @@ let g:neomake_haskell_remote_maker = {
 let g:neomake_ft_maker_remove_invalid_entries = 1
 
 let g:neomake_tex_enabled_makers = ['chktex']
+
+" let g:neomake_java_enabled_makers = ['gradle']
 
 if has("nvim")
     tnoremap <C-l> <C-\><C-n><C-w><C-l>

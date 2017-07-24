@@ -5,6 +5,8 @@ exec "$HOME/.i3/bin/switch_to_dvorak"
 
 set $mod Mod4
 
+focus_follows_mouse no
+
 client.focused          #3F8AC2 #096BAA #00BAA7 #00DA8E
 client.focused_inactive #333333 #5F676A #ffffff #484e50
 client.unfocused        #333333 #424242 #888888 #292d2e

@@ -395,9 +395,11 @@ if has('nvim') && executable('$HOME/bin/nvim-hs-devel.sh')
     call rpcrequest(rpcstart(expand('$HOME/bin/nvim-hs-devel.sh')), "PingNvimhs")
 endif
 
-call togglebg#map("<F5>")
-set background=light
-autocmd! VimEnter * colorscheme solarized
-
 nnoremap <Space> :exec "normal i".nr2char(getchar())."\e"<CR>
 nnoremap S :exec "normal a".nr2char(getchar())."\e"<CR>
+
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+call togglebg#map("<F5>")
+set termguicolors
+set background=light
+colorscheme solarized

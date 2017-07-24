@@ -2,6 +2,7 @@
 
 link_list=()
 link_list+=("i3config:$HOME/.i3/config")
+link_list+=("i3statusconf:$HOME/.i3status.conf")
 link_list+=("i3bin:$HOME/.i3/bin")
 link_list+=("bashrc:$HOME/.bashrc")
 link_list+=("zshrc:$HOME/.zshrc")

@@ -232,9 +232,9 @@ nmap <silent> <leader>- :resize -4<CR>
 nmap <silent> + :vertical resize +4<CR>
 nmap <silent> - :vertical resize -4<CR>
 
-map <silent> <Leader>cc :make %<Return>:cw<Return>
-map <silent> <Leader>cp :cprevious<Return>
-map <silent> <Leader>cn :cnext<Return>
+nnoremap <Leader>cc :make %<Return>:cw<Return>
+nnoremap <Leader>cp :cprevious<Return>
+nnoremap <Leader>cn :cnext<Return>
 
 map <silent> <Leader>lp :lprevious<Return>
 map <silent> <Leader>ln :lnext<Return>
@@ -243,9 +243,9 @@ map <silent> <Leader>ln :lnext<Return>
 map <silent> <Leader>zz :set foldmethod=syntax<CR>:set foldmethod=manual<CR>
 
 " edit nvimrc
-map <silent> <Leader>rc :e ~/.config/nvim/init.vim<CR>
+nnoremap <Leader>rc :e $MYVIMRC<CR>
 " load nvimrc
-map <silent> <Leader>rl :so ~/.config/nvim/init.vim<CR>
+nnoremap <Leader>rl :so $MYVIMRC<CR>
 
 " some mappings for easy folding
 nmap <silent> <Leader>f0 :set foldlevel=0<CR>
@@ -334,19 +334,9 @@ nnoremap <silent> gr :call GitReplaceWordUnderCursor()<CR>
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
       \ | wincmd p | diffthis
 
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 0
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-"let g:syntastic_javascript_checkers = ['jshint']
-"let g:syntastic_tex_checkers = ['chktex']
 
 let g:neomake_haskell_enabled_makers = ['hlint']
-autocmd! BufWritePost * Neomake
+" autocmd! BufWritePost * Neomake
 
 let g:neomake_haskell_remote_maker = {
     \ 'exe': './scripts/build-remotely.sh',
@@ -376,15 +366,12 @@ let g:haskell_indent_where = 2
 let g:haskell_indent_do = 3
 let g:haskell_indent_in = 1
 
-if has('nvim') && executable('$HOME/bin/nvim-hs-devel.sh')
-    call rpcrequest(rpcstart(expand('$HOME/bin/nvim-hs-devel.sh')), "PingNvimhs")
-endif
+" if has('nvim') && executable('$HOME/bin/nvim-hs-devel.sh')
+"     call rpcrequest(rpcstart(expand('$HOME/bin/nvim-hs-devel.sh')), "PingNvimhs")
+" endif
 
-nnoremap <Space> :exec "normal i".nr2char(getchar())."\e"<CR>
-nnoremap S :exec "normal a".nr2char(getchar())."\e"<CR>
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 call togglebg#map("<F5>")
-set termguicolors
 set background=light
 colorscheme solarized

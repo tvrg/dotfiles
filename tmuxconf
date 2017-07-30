@@ -9,6 +9,9 @@ bind r source-file ~/.tmux.conf
 
 bind enter last-window
 
+bind \ split-window -h
+bind - split-window -v
+
 # Binds for moving to different windows
 bind j select-pane -D
 bind k select-pane -U

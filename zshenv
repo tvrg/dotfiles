@@ -1,0 +1,11 @@
+alias zshconfig="nvim ~/.zshrc"
+alias zshreload="source ~/.zshrc"
+alias ohmyzsh="nvim ~/.oh-my-zsh"
+alias xc='xclip -f -selection clipboard'
+alias docker-pid="docker inspect --format '{{ .State.Pid }}'"
+alias docker-ip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
+alias demodeployed="ssh demoshop 'ls -lah webapps/FACT-Finder_Dev*.war webapps/FACT-Finder.war webapps/FACT-Finder-UI.war'"
+export JIRA_URL="http://jira/"
+export JIRA_BRANCH_REGEX="s/.*(FF-[0-9]+).*/\1/p"
+export LESS="FRSX"
+export TERM=xterm-256color

@@ -1,6 +1,5 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
   export ZSH=/home/thomas/.oh-my-zsh
 
@@ -83,14 +82,4 @@ fi
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="nvim ~/.zshrc"
-alias zshreload="source ~/.zshrc"
-alias ohmyzsh="nvim ~/.oh-my-zsh"
-alias xc='xclip -f -selection clipboard'
-alias docker-pid="docker inspect --format '{{ .State.Pid }}'"
-alias docker-ip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
-alias demodeployed="ssh demoshop 'ls -lah webapps/FACT-Finder_Dev*.war webapps/FACT-Finder.war webapps/FACT-Finder-UI.war'"
-export JIRA_URL="http://jira/"
-export JIRA_BRANCH_REGEX="s/.*(FF-[0-9]+).*/\1/p"
-
-export LESS="FRSX"
+bindkey -M viins '^F' history-incremental-pattern-search-forward

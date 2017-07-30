@@ -13,25 +13,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'kien/ctrlp.vim', { 'on': 'CtrlPMRUFiles' }
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
-Plug 'mmozuras/snipmate-mocha'
-Plug 'honza/vim-snippets'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'vimwiki/vimwiki'
-Plug 'Shutnik/jshint2.vim'
 Plug 'benekastah/neomake'
-Plug 'janko-m/vim-test'
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'raichoo/purescript-vim'
 Plug 'neovimhaskell/haskell-vim'
-Plug 'mpickering/hlint-refactor-vim'
-Plug 'Twinside/vim-haskellFold'
-Plug 'jalvesaq/Nvim-R'
 Plug 'tpope/vim-surround'
-Plug 'leafgarland/typescript-vim'
 call plug#end()
 
 filetype plugin indent on
@@ -189,7 +175,7 @@ if has("autocmd")
 
 endif " has("autocmd")
 
-let g:tex_isk="48-57,a-z,A-Z,_,:,192-255"
+" let g:tex_isk="48-57,a-z,A-Z,_,:,192-255"
 function! SetupLatex()
     nnoremap <leader>rr :!make pdf<CR>
     nnoremap ]] :/label{.*:\zs.*\ze}<CR>
@@ -221,7 +207,6 @@ endfunction
 if has("autocmd")
     au FileType python call SetupPython()
     au FileType javascript call SetupJavascript()
-    au FileType tex call SetupLatex()
     au FileType java call SetupJava()
     au FileType haskell call SetupHaskell()
 endif

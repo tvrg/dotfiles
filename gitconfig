@@ -1,20 +1,13 @@
 [user]
     name = Thomas Wienecke
-    email = wienecke.t@gmail.com
+    email = thomas.wienecke@omikron.net
 [core]
     editor = nvim
-    pager = less -F -X
+    autocrlf = false
 [diff]
     tool = nvim -d
 [difftool]
     prompt = false
-[alias]
-    dt = difftool
-    tf = diff
-    df = diff
-
-[http]
-	postBuffer = 1048576000
 [color]
     diff = auto
     status = auto
@@ -42,7 +35,6 @@
     co = checkout
     df = diff
     ds = diff --staged
-    dh1 = diff HEAD~1
     pom = push origin master
     amend = commit --amend
     lg = log -p
@@ -50,13 +42,15 @@
     lol = log --graph --decorate --pretty=oneline --abbrev-commit --all --max-count=20
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     ls = ls-files
-    task = !nvim .git/task
-    difftex = difftool -y -t latex
-
-  # Show files ignored by git:
     ign = ls-files -o -i --exclude-standard
     fixup = !GIT_SEQUENCE_EDITOR=true git rebase -i --autosquash
 [push]
-    default = tracking
-[difftool.latex]
-    cmd = latexdiff --flatten "$LOCAL" "$REMOTE"
+    default = current
+[merge]
+    tool = vimdiff
+[mergetool]
+    path = nvim
+[rerere]
+    enabled = true
+[branch]
+    autosetuprebase = always

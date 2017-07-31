@@ -1,6 +1,7 @@
 exec "pa-applet"
 exec "nm-applet"
 exec "synclient touchpadoff=1"
+exec "mate-settings-daemon"
 exec "$HOME/.i3/bin/switch_to_dvorak"
 
 set $mod Mod4

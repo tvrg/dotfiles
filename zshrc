@@ -48,11 +48,18 @@ ZSH_THEME="eastwood"
 
 ZSH_TMUX_AUTOSTART=true
 
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode docker history-substring-search wd tmux)
+plugins=(git vi-mode docker history-substring-search wd tmux fasd)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -62,13 +69,6 @@ source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -83,3 +83,6 @@ fi
 #
 # Example aliases
 bindkey -M viins '^F' history-incremental-pattern-search-forward
+bindkey '^X^A' fasd-complete    # C-x C-a to do fasd-complete (files and directories)
+bindkey '^X^F' fasd-complete-f  # C-x C-f to do fasd-complete-f (only files)
+bindkey '^X^D' fasd-complete-d  # C-x C-d to do fasd-complete-d (only directories)

@@ -32,7 +32,7 @@ disk "/home" {
 }
 
 disk "/dev/shm" {
-	format = " tmp:%avail "
+	format = " /tmp:%avail "
 }
 
 tztime local {

@@ -43,7 +43,7 @@ bindcode $mod+36 exec i3-sensible-terminal
 bindcode $mod+Shift+24 kill
 
 # start dmenu (a program launcher)
-bindcode $mod+40 exec dmenu_run
+bindcode $mod+40 exec rofi -show run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.

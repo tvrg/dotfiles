@@ -13,7 +13,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'kien/ctrlp.vim', { 'on': 'CtrlPMRUFiles' }
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-Plug 'frankier/neovim-colors-solarized-truecolor-only'
+"Plug 'frankier/neovim-colors-solarized-truecolor-only'
+Plug 'lifepillar/vim-solarized8'
 Plug 'vimwiki/vimwiki'
 Plug 'benekastah/neomake'
 Plug 'neovimhaskell/haskell-vim'
@@ -372,6 +373,5 @@ let g:haskell_indent_in = 1
 
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-call togglebg#map("<F5>")
 set background=light
-colorscheme solarized
+colorscheme solarized8_light

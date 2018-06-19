@@ -1,7 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/thomas/.oh-my-zsh
+export ZSH=/home/thomas/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -59,7 +59,7 @@ fi
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode docker history-substring-search wd tmux fasd)
+plugins=(git gitfast vi-mode docker history-substring-search wd tmux fasd)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -86,3 +86,8 @@ bindkey -M viins '^F' history-incremental-pattern-search-forward
 bindkey '^X^A' fasd-complete    # C-x C-a to do fasd-complete (files and directories)
 bindkey '^X^F' fasd-complete-f  # C-x C-f to do fasd-complete-f (only files)
 bindkey '^X^D' fasd-complete-d  # C-x C-d to do fasd-complete-d (only directories)
+
+texec () {
+        local cmd=${2:-bash}
+        docker exec -it $1 bash -c "stty cols $COLUMNS rows $LINES && $cmd"
+}

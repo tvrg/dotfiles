@@ -19,6 +19,8 @@ Plug 'vimwiki/vimwiki'
 Plug 'benekastah/neomake'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'tpope/vim-surround'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'majutsushi/tagbar'
 call plug#end()
 
 filetype plugin indent on
@@ -48,6 +50,8 @@ set smartindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
+set clipboard=unnamedplus
 
 set splitright " Put vertical splits to the right.
 
@@ -127,6 +131,9 @@ if has("autocmd")
     au BufRead,BufNewFile *.cu  set filetype=c
 
     au BufRead,BufNewFile *.moon set filetype=lua
+    au BufRead,BufNewFile Jenkinsfile* setfiletype groovy
+
+    au BufRead,BufNewFile *.ts set filetype=javascript
 
     au FileType ruby nnoremap <leader>rr :!ruby %<CR>
 
@@ -157,8 +164,10 @@ if has("autocmd")
     autocmd FileType lua set sw=2 ts=2
     autocmd FileType c set sw=2 ts=2
     autocmd FileType json set sw=2 ts=2
+    autocmd FileType yaml set sw=2 ts=2
     autocmd FileType javascript set sw=2 ts=2
     autocmd FileType cpp,c set comments^=b:///
+    autocmd FileType groovy set noexpandtab
 
     au BufWinLeave *.* mkview
     au BufWinEnter *.* silent! loadview
@@ -315,7 +324,7 @@ nnoremap <silent> * :let star_view=winsaveview()<CR>*:call winrestview(star_view
 " Open tags in vertical splits
 nnoremap <C-w>] :vsp<CR>:exec("tag ".expand("<cword>"))<CR>
 
-"nnoremap <C-g> :execute "Ggrep '\\<" . expand('<cword>') . "\\>'"<CR>
+nnoremap <C-g> :execute "Ggrep '\\<" . expand('<cword>') . "\\>'"<CR>
 
 function! GitReplaceWord(to_replace, replacement)
     execute "!git grep -l '\\<" . a:to_replace . "\\>' | xargs sed -i 's/\\b" .  a:to_replace . "\\b/" . a:replacement . "/g'"
@@ -371,7 +380,9 @@ let g:haskell_indent_in = 1
 "     call rpcrequest(rpcstart(expand('$HOME/bin/nvim-hs-devel.sh')), "PingNvimhs")
 " endif
 
+let g:gutentags_enabled=0
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=light
 colorscheme solarized8_light
+"colorscheme default

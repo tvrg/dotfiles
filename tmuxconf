@@ -33,10 +33,12 @@ bind -n M-Up select-pane -U
 bind -n M-Down select-pane -D
 
 bind c new-window -c "#{pane_current_path}"
+bind % split-window -h -c "#{pane_current_path}"
+bind '"' split-window -v -c "#{pane_current_path}"
 
 # bind -t vi-copy y copy-pipe "xclip -sel clip -i"
 
-set -g mouse on
+set -g mouse off
 set -sg escape-time 0
 set-option -g history-limit 100000
 bind -n Pageup copy-mode -u

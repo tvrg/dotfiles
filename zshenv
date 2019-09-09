@@ -13,6 +13,6 @@ export JIRA_BRANCH_REGEX="s/.*(FF-[0-9]+).*/\1/p"
 export LESS="FRSX"
 export TERM=xterm-256color
 export GOPATH=/home/thomas/src/go
-export PATH="~/.local/bin/:$PATH:/usr/lib/go-1.9/bin:/home/thomas/src/go/bin"
-source /home/thomas/src/google-cloud-sdk/path.zsh.inc
-source /home/thomas/src/google-cloud-sdk/completion.zsh.inc
+export PATH="$HOME/bin:$HOME/.local/bin/:$PATH:/usr/lib/go-1.9/bin:/home/thomas/src/go/bin"
+export BAT_THEME="Monokai Extended Light"
+export BROWSER="firefox:google-chrome"

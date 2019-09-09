@@ -21,6 +21,8 @@ Plug 'neovimhaskell/haskell-vim'
 Plug 'tpope/vim-surround'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'udalov/kotlin-vim'
 call plug#end()
 
 filetype plugin indent on
@@ -73,6 +75,11 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 set ignorecase
 set smartcase
+
+if has("nvim")
+    " live replace
+    set inccommand=nosplit
+endif
 
 " The Silver Searcher
 " if executable('ag')
@@ -132,8 +139,13 @@ if has("autocmd")
 
     au BufRead,BufNewFile *.moon set filetype=lua
     au BufRead,BufNewFile Jenkinsfile* setfiletype groovy
+    au BufRead,BufNewFile Jenkinsfile* set noexpandtab
 
     au BufRead,BufNewFile *.ts set filetype=javascript
+
+    au BufRead,BufNewFile *.yaml.j2 set filetype=yaml
+    au BufRead,BufNewFile *.yml.j2 set filetype=yaml
+    au BufRead,BufNewFile *.json.j2 set filetype=json
 
     au FileType ruby nnoremap <leader>rr :!ruby %<CR>
 
@@ -167,7 +179,8 @@ if has("autocmd")
     autocmd FileType yaml set sw=2 ts=2
     autocmd FileType javascript set sw=2 ts=2
     autocmd FileType cpp,c set comments^=b:///
-    autocmd FileType groovy set noexpandtab
+    autocmd FileType groovy set expandtab
+    autocmd FileType groovy set sw=4
 
     au BufWinLeave *.* mkview
     au BufWinEnter *.* silent! loadview
@@ -384,5 +397,6 @@ let g:gutentags_enabled=0
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=light
-colorscheme solarized8_light
+set termguicolors
+colorscheme solarized8
 "colorscheme default

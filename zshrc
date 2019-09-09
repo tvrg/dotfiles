@@ -46,7 +46,7 @@ ZSH_THEME="eastwood"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOSTART=false
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -91,3 +91,11 @@ texec () {
         local cmd=${2:-bash}
         docker exec -it $1 bash -c "stty cols $COLUMNS rows $LINES && $cmd"
 }
+
+eval $(thefuck --alias)
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/thomas/google-cloud-sdk/path.zsh.inc' ]; then . '/home/thomas/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/thomas/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/thomas/google-cloud-sdk/completion.zsh.inc'; fi

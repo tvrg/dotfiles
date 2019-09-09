@@ -4,7 +4,7 @@ xkb_symbols "level5_caps_switch" {
     type[Group1]="ONE_LEVEL",
     symbols[Group1] = [ ISO_Level5_Shift ]
   };
-  modifier_map Mod3   { ISO_Level5_Shift };
+  modifier_map Mod4   { ISO_Level5_Shift };
 };
 
 default partial modifier_keys
@@ -22,7 +22,7 @@ xkb_symbols "dvp" {
 
     name[Group1] = "Custom Dvorak for Programmers";
 
-    key.type[Group1] = "EIGHT_LEVEL_SEMIALPHABETIC"; 
+    key.type[Group1] = "EIGHT_LEVEL_SEMIALPHABETIC";
 
     key <AD03> { [ period,          greater,        guillemotright, NoSymbol, Up, Up              ] };
 

@@ -1,2 +1,0 @@
-XKB_DIR=$(dirname $0)/xkb/
-setxkbmap custom dvp -print | xkbcomp -I$XKB_DIR - :0

@@ -1,41 +1,41 @@
 [user]
-	name = Thomas von Rosenberg
-	email = {{ .email }}
+    name = Thomas von Rosenberg
+    email = {{ .email }}
 [core]
-	autocrlf = false
-	excludesfile = ~/.gitignore
+    autocrlf = false
+    excludesfile = ~/.gitignore
 [alias]
-	st = status
-	ci = commit
-	br = branch
-	co = checkout
-	df = diff
-	ds = diff --staged
-	pom = push origin master
-	amend = commit --amend
-	lob = log --graph --decorate --pretty=oneline --abbrev-commit
-	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all --max-count=20
-	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-	ls = ls-files
-	ign = ls-files -o -i --exclude-standard
-	fixup = !GIT_SEQUENCE_EDITOR=true git rebase -i --autosquash
+    st = status
+    ci = commit
+    br = branch
+    co = checkout
+    df = diff
+    ds = diff --staged
+    pom = push origin master
+    amend = commit --amend
+    lob = log --graph --decorate --pretty=oneline --abbrev-commit
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit --all --max-count=20
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    ls = ls-files
+    ign = ls-files -o -i --exclude-standard
+    fixup = !GIT_SEQUENCE_EDITOR=true git rebase -i --autosquash
 [push]
-	default = current
+    default = current
 [merge]
-	tool = vimdiff
+    tool = vimdiff
     renameLimit = 100000000
 [mergetool]
-	path = nvim
+    path = nvim
 [rerere]
-	enabled = true
+    enabled = true
 [branch]
-	autosetuprebase = always
+    autosetuprebase = always
 [pull]
     rebase = true
 [gc]
-	autoDetach = false
+    autoDetach = false
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true

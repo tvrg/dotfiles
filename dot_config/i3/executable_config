@@ -1,7 +1,6 @@
 exec --no-startup-id "pa-applet"
 exec --no-startup-id "synclient touchpadoff=1"
 exec --no-startup-id "mate-settings-daemon"
-exec --no-startup-id "$HOME/.i3/bin/switch_to_dvorak"
 
 set $mod Mod4
 
@@ -17,8 +16,7 @@ bindcode $mod+33 exec "$HOME/.i3/bin/suspendandlock"
 bindcode $mod+28 exec "$HOME/.i3/bin/touchpad-toggle.sh"
 
 bindcode $mod+42 exec "setxkbmap de"
-bindcode $mod+57 exec "setxkbmap de neo"
-bindcode $mod+48 exec --no-startup-id "$HOME/.i3/bin/switch_to_dvorak"
+bindcode $mod+48 exec "setxkbmap dvorak-tvr basic"
 
 bindcode $mod+Shift+Control+44 move workspace to left
 bindcode $mod+Shift+Control+47 move workspace to right

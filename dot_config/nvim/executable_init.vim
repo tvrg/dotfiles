@@ -176,7 +176,7 @@ if has("autocmd")
     autocmd FileType lua set sw=2 ts=2
     autocmd FileType c set sw=2 ts=2
     autocmd FileType json set sw=2 ts=2
-    autocmd FileType yaml set sw=2 ts=2
+    autocmd FileType yaml set sw=4 ts=4
     autocmd FileType javascript set sw=2 ts=2
     autocmd FileType cpp,c set comments^=b:///
     autocmd FileType groovy set expandtab

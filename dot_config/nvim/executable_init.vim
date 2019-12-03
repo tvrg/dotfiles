@@ -207,6 +207,7 @@ endfunction
 
 function! SetupPython()
     nnoremap <leader>rr :w<CR>:!python %<CR>
+    call neomake#configure#automake('w')
 endfunction
 
 function! SetupJavascript()

@@ -59,7 +59,7 @@ fi
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git gitfast vi-mode docker history-substring-search wd tmux fasd)
+plugins=(git gitfast vi-mode docker history-substring-search wd tmux fasd colored-man-pages copyfile)
 
 source $ZSH/oh-my-zsh.sh
 

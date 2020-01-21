@@ -37,7 +37,7 @@ font pango: Ubuntu Mono 11
 floating_modifier $mod
 
 # start a terminal
-bindcode $mod+36 exec i3-sensible-terminal
+bindcode $mod+36 exec termite
 
 # kill focused window
 bindcode $mod+25 kill
@@ -166,3 +166,5 @@ bar {
         statusline #DCDCDC
     }
 }
+
+for_window [title="Microsoft Teams Notification"] floating enable

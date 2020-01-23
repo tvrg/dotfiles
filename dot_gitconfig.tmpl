@@ -13,9 +13,9 @@
     ds = diff --staged
     pom = push origin master
     amend = commit --amend
-    lob = log --graph --decorate --pretty=oneline --abbrev-commit
-    lol = log --graph --decorate --pretty=oneline --abbrev-commit --all --max-count=20
-    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    lob = log --graph --decorate --format='%C(auto)%h%d %C(green)%aN %C(auto)%s% gD' --abbrev-commit
+    lol = log --graph --decorate --format='%C(auto)%h%d %C(green)%aN %C(auto)%s% gD' --abbrev-commit --all --max-count=20
+    lola = log --graph --decorate --format='%C(auto)%h%d %C(green)%aN %C(auto)%s% gD' --abbrev-commit --all
     ls = ls-files
     ign = ls-files -o -i --exclude-standard
     fixup = !GIT_SEQUENCE_EDITOR=true git rebase -i --autosquash

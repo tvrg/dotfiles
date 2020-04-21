@@ -65,6 +65,11 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+ARCH_MULTIWORD_PATH=/usr/share/zsh/plugins/history-search-multi-word/history-search-multi-word.plugin.zsh
+if [ -f $ARCH_MULTIWORD_PATH ]; then
+    source $ARCH_MULTIWORD_PATH
+fi
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment

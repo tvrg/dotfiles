@@ -23,7 +23,6 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'udalov/kotlin-vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'itchyny/lightline.vim'
 call plug#end()
 
@@ -155,7 +154,7 @@ if has("autocmd")
     au BufRead,BufNewFile Jenkinsfile* setfiletype groovy
     au BufRead,BufNewFile Jenkinsfile* set noexpandtab
 
-    au BufRead,BufNewFile *.ts set filetype=typescript
+    au BufRead,BufNewFile *.ts set filetype=javascript
 
     au BufRead,BufNewFile *.yaml.j2 set filetype=yaml
     au BufRead,BufNewFile *.yml.j2 set filetype=yaml
@@ -415,62 +414,3 @@ set background=light
 set termguicolors
 colorscheme solarized8
 "colorscheme default
-
-
-" CoC
-inoremap <silent><expr> <c-space> coc#refresh()
-
-if has('patch8.1.1068')
-  " Use `complete_info` if your (Neo)Vim version supports it.
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-inoremap <silent><expr> <TAB>
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ pumvisible() ? coc#_select_confirm() :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-let g:coc_snippet_next = '<tab>'
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gt <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gu <Plug>(coc-references)
-nmap <silent> gb <C-o>
-nmap <silent> gf <C-i>
-nnoremap <silent> <space>m  :<C-u>CocList outline<cr>
-nnoremap <silent> <space>M  :<C-u>CocList -I symbols<cr>
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> <leader>E <Plug>(coc-diagnostic-prev)
-nmap <silent> <leader>e <Plug>(coc-diagnostic-next)
-nmap <Leader>L :call CocAction('format')<CR>
-
-" Use auocmd to force lightline update.
-autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
-nmap <leader>rn <Plug>(coc-rename)
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-function! s:cocActionsOpenFromSelected(type) abort
-  execute 'CocCommand actions.open ' . a:type
-endfunction
-xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@

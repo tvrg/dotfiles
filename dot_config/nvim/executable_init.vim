@@ -34,11 +34,8 @@ let g:lightline = {
 \ 'colorscheme': 'solarized',
 \ 'active': {
 \   'left': [ [ 'mode', 'paste' ],
-\             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-\ },
-\ 'component_function': {
-\   'cocstatus': 'coc#status'
-\ },
+\             [ 'readonly', 'filename', 'modified' ] ]
+\ }
 \ }
 
 let mapleader=','

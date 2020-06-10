@@ -19,6 +19,7 @@
     ls = ls-files
     ign = ls-files -o -i --exclude-standard
     fixup = !GIT_SEQUENCE_EDITOR=true git rebase -i --autosquash
+    wip = !git add -A && git commit -m wip
 [push]
     default = current
 [merge]

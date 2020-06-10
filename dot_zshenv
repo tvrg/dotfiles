@@ -10,5 +10,5 @@ export LESS="FRSX"
 export TERM=xterm-256color
 export GOPATH=/home/thomas/src/go
 export PATH="$HOME/bin:$HOME/.local/bin/:$PATH:/usr/lib/go-1.9/bin:/home/thomas/src/go/bin"
-export BROWSER="firefox:google-chrome"
+export BROWSER="firefox"
 export DIFFPROG="nvim -d"

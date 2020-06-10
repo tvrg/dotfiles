@@ -151,7 +151,7 @@ if has("autocmd")
     au BufRead,BufNewFile Jenkinsfile* setfiletype groovy
     au BufRead,BufNewFile Jenkinsfile* set noexpandtab
 
-    au BufRead,BufNewFile *.ts set filetype=javascript
+    au BufRead,BufNewFile *.ts set filetype=typescript
 
     au BufRead,BufNewFile *.yaml.j2 set filetype=yaml
     au BufRead,BufNewFile *.yml.j2 set filetype=yaml

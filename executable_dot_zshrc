@@ -64,6 +64,7 @@ plugins=(git gitfast vi-mode docker history-substring-search wd tmux fasd colore
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+unsetopt nomatch
 source /usr/share/fzf/completion.zsh
 source /usr/share/fzf/key-bindings.zsh
 

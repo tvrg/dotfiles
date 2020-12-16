@@ -24,6 +24,7 @@ Plug 'majutsushi/tagbar'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'udalov/kotlin-vim'
 Plug 'itchyny/lightline.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 filetype plugin indent on
@@ -156,6 +157,7 @@ if has("autocmd")
     au BufRead,BufNewFile *.yaml.j2 set filetype=yaml
     au BufRead,BufNewFile *.yml.j2 set filetype=yaml
     au BufRead,BufNewFile *.json.j2 set filetype=json
+    au FileType go set noexpandtab
 
     au FileType ruby nnoremap <leader>rr :!ruby %<CR>
 
@@ -411,3 +413,65 @@ set background=light
 set termguicolors
 colorscheme solarized8
 "colorscheme default
+
+" coc adjustments
+set updatetime=300
+set cmdheight=2
+set shortmess+=c
+set signcolumn=yes
+
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+inoremap <silent><expr> <c-space> coc#refresh()
+
+if has('patch8.1.1068')
+  " Use `complete_info` if your (Neo)Vim version supports it.
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+inoremap <silent><expr> <TAB>
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ pumvisible() ? coc#_select_confirm() :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gD <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gu <Plug>(coc-references)
+nmap <silent> gb <C-o>
+nmap <silent> gf <C-i>
+nnoremap <silent> gm  :<C-u>CocList outline<cr>
+nnoremap <silent> gM  :<C-u>CocList -I symbols<cr>
+
+nmap <silent> gE <Plug>(coc-diagnostic-prev)
+nmap <silent> ge <Plug>(coc-diagnostic-next)
+nmap <Leader>af :call CocAction('format')<CR>
+
+" Use auocmd to force lightline update.
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+nmap <leader>ar <Plug>(coc-rename)
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+nmap <Leader>u i<c-r>=substitute(system('uuidgen'),'[\r\n]*$','','')<cr><esc>

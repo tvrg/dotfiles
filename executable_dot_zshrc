@@ -101,3 +101,8 @@ if [ -f '/home/thomas/google-cloud-sdk/path.zsh.inc' ]; then . '/home/thomas/goo
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/thomas/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/thomas/google-cloud-sdk/completion.zsh.inc'; fi
+
+export JIRA_URL='https://jira.omikron.net/browse/'
+function jira(){
+  xdg-open $JIRA_URL`task _get "$1".jira`
+}

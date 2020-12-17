@@ -10,7 +10,6 @@ else
     call plug#begin('~/.vim/bundle')
 endif
 Plug 'tpope/vim-fugitive'
-Plug 'kien/ctrlp.vim', { 'on': 'CtrlPMRUFiles' }
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 "Plug 'frankier/neovim-colors-solarized-truecolor-only'
@@ -25,6 +24,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'udalov/kotlin-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 filetype plugin indent on
@@ -302,16 +302,7 @@ nnoremap ` '
 " Don't allow gitgutter to map keys.
 let g:gitgutter_map_keys = 0
 
-" Custom ctrlp command.
-let g:ctrlp_user_command = {
-  \ 'types': {
-    \ 1: ['.git', 'cd %s && git ls-files'],
-    \ 2: ['_darcs', 'cd %s && darcs show files --no-pending --no-directories'],
-    \ },
-  \ 'fallback': 'find %s -type f'
-  \ }
-let g:ctrlp_cmd = 'CtrlPMRUFiles'
-nnoremap <C-p> :CtrlPMRUFiles<CR>
+nnoremap <C-P> :FZF<CR>
 
 " map to switch off hlsearch
 nnoremap <silent> <leader>h :silent :nohlsearch<CR>

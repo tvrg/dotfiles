@@ -106,3 +106,34 @@ function jira(){
 
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+
+unsetopt sharehistory
+
+unalias gcl
+gcl () {
+  local branches branch
+  branches=$(git --no-pager branch -vv) &&
+  branch=$(echo "$branches" | fzf +m) &&
+  git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+}
+
+gcr () {
+  local branches branch
+  branches=$(git branch --all | grep -v HEAD) &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+local_branches () {
+  local branches branch
+  branches=$(git --no-pager branch -vv) &&
+  branch=$(echo "$branches" | fzf +m) &&
+  LBUFFER="${LBUFFER}$(echo "$branch" | awk '{print $1}' | sed "s/.* //" | tr -d '\n')"
+  local ret=$?
+  zle reset-prompt
+  return $ret
+}
+
+zle     -N   local_branches
+bindkey '^B' local_branches

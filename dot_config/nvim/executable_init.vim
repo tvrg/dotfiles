@@ -452,8 +452,6 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gD <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gu <Plug>(coc-references)
-nmap <silent> gb <C-o>
-nmap <silent> gf <C-i>
 nnoremap <silent> gm  :<C-u>CocList outline<cr>
 nnoremap <silent> gM  :<C-u>CocList -I symbols<cr>
 

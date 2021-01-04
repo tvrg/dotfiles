@@ -302,7 +302,8 @@ nnoremap ` '
 " Don't allow gitgutter to map keys.
 let g:gitgutter_map_keys = 0
 
-nnoremap <C-P> :FZF<CR>
+nnoremap <C-P> :GFiles<CR>
+nnoremap <C-N> :Files<CR>
 
 " map to switch off hlsearch
 nnoremap <silent> <leader>h :silent :nohlsearch<CR>

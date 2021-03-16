@@ -129,7 +129,10 @@ let g:localvimrc_ask = 1
 " enable mouse inside vimwiki
 let g:vimwiki_use_mouse=1
 
-let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [
+    \ {'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md', 'index': 'home'},
+    \ {'path': '~/vimwiki-work/', 'syntax': 'markdown', 'ext': '.md', 'index': 'home'}
+    \ ]
 
 let g:xml_syntax_folding=1
 

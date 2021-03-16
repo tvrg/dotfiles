@@ -65,8 +65,6 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-set clipboard=unnamedplus
-
 set splitright " Put vertical splits to the right.
 
 " Allow to hide modified buffers.

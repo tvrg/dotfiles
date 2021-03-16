@@ -25,6 +25,7 @@ Plug 'udalov/kotlin-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf.vim'
+Plug 'jremmen/vim-ripgrep'
 call plug#end()
 
 filetype plugin indent on
@@ -91,14 +92,6 @@ if has("nvim")
     " live replace
     set inccommand=nosplit
 endif
-
-" The Silver Searcher
-" if executable('ag')
-"   " Use ag over grep
-"   set grepprg=ag\ --nogroup\ --nocolor
-" else
-"     set grepprg=grep\ -nH\ $*
-" endif
 
 " bind K to grep word under cursor
 nnoremap K :set noincsearch<CR>:grep! "\b<C-R><C-W>\b"<CR>:cw<CR>:set incsearch<CR>

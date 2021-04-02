@@ -10,6 +10,8 @@ else
     call plug#begin('~/.vim/bundle')
 endif
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 "Plug 'frankier/neovim-colors-solarized-truecolor-only'
@@ -17,7 +19,6 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'vimwiki/vimwiki'
 Plug 'benekastah/neomake'
 Plug 'neovimhaskell/haskell-vim'
-Plug 'tpope/vim-surround'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 Plug 'christoomey/vim-tmux-navigator'
@@ -263,11 +264,6 @@ nmap <silent> + :vertical resize +4<CR>
 nmap <silent> - :vertical resize -4<CR>
 
 nnoremap <Leader>cc :make %<Return>:cw<Return>
-nnoremap <Leader>cp :cprevious<Return>
-nnoremap <Leader>cn :cnext<Return>
-
-map <silent> <Leader>lp :lprevious<Return>
-map <silent> <Leader>ln :lnext<Return>
 
 "autocmd FileType java set foldmethod=syntax
 map <silent> <Leader>zz :set foldmethod=syntax<CR>:set foldmethod=manual<CR>

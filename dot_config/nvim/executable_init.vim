@@ -81,8 +81,8 @@ set wildmenu
 set wildmode=list:longest
 
 " save temp-files in a central folder
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set backupdir=~/tmp,/var/tmp,/tmp
+set directory=~/tmp,/var/tmp,/tmp
 
 set ignorecase
 set smartcase

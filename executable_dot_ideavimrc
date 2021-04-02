@@ -5,6 +5,8 @@ nmap ,wl :action MoveTabRight<CR>
 nmap ,wh :action MoveTabLeft<CR>
 nmap ]m :action MethodDown<CR>
 nmap [m :action MethodUp<CR>
+nmap ]q :action NextOccurence<CR>
+nmap [q :action PreviousOccurence<CR>
 nmap ,rc :e ~/.ideavimrc<CR>
 nmap ,rl :so ~/.ideavimrc<CR>
 nmap ,y "+y

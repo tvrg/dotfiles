@@ -1,0 +1,21 @@
+nmap g] :action GotoImplementation<CR>
+nmap gu :action ShowUsages<CR>
+nmap gs :action GotoSuperMethod<CR>
+nmap ,wl :action MoveTabRight<CR>
+nmap ,wh :action MoveTabLeft<CR>
+nmap ]m :action MethodDown<CR>
+nmap [m :action MethodUp<CR>
+nmap ,rc :e ~/.ideavimrc<CR>
+nmap ,rl :so ~/.ideavimrc<CR>
+nmap ,y "+y
+nmap ,d "+d
+nmap ,p "+p
+nmap ,P "+P
+vmap ,y "+y
+vmap ,d "+d
+vmap ,p "+p
+vmap ,P "+P
+nnoremap \ ,
+set incsearch
+set ignorecase smartcase
+set number

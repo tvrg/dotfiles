@@ -1,5 +1,4 @@
 exec --no-startup-id "pa-applet"
-exec --no-startup-id "blueman-applet"
 exec --no-startup-id "synclient touchpadoff=1"
 exec --no-startup-id "mate-settings-daemon"
 

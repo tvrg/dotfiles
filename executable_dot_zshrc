@@ -152,3 +152,11 @@ bindkey '^B' select_branch
 
 unalias ls
 alias ls="exa -la"
+
+function delete-branches() {
+    git branch |
+        grep --invert-match '\*' |
+        cut -c 3- |
+        fzf --ansi --multi --preview="git log --color=always -50 {} --" |
+        xargs --no-run-if-empty git branch --delete --force
+}

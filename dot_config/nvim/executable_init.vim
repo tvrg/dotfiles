@@ -327,8 +327,6 @@ nnoremap <silent> * :let star_view=winsaveview()<CR>*:call winrestview(star_view
 " Open tags in vertical splits
 nnoremap <C-w>] :vsp<CR>:exec("tag ".expand("<cword>"))<CR>
 
-nnoremap <C-g> :execute "Ggrep '\\<" . expand('<cword>') . "\\>'"<CR>
-
 function! GitReplaceWord(to_replace, replacement)
     execute "!git grep -l '\\<" . a:to_replace . "\\>' | xargs sed -i 's/\\b" .  a:to_replace . "\\b/" . a:replacement . "/g'"
 endfunction

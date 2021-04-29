@@ -1,7 +1,7 @@
 if !has("nvim")
-    set nocompatible              " be iMproved, required
+    set nocompatible
 endif
-filetype off                  " required
+filetype off
 
 " set the runtime path to include Vundle and initialize
 if has("nvim")
@@ -434,7 +434,7 @@ let g:coc_snippet_next = '<tab>'
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gD <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gu <Plug>(coc-references)
+nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> gm  :<C-u>CocList outline<cr>
 nnoremap <silent> gM  :<C-u>CocList -I symbols<cr>
 

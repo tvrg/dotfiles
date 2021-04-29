@@ -60,6 +60,8 @@ set smartindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
+" Don't insert two spaces after a sentence.
+set nojoinspaces
 
 set splitright " Put vertical splits to the right.
 

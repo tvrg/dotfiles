@@ -1,5 +1,8 @@
+set NERDTree
+set surround
+
 nmap g] :action GotoImplementation<CR>
-nmap gu :action ShowUsages<CR>
+nmap gr :action ShowUsages<CR>
 nmap gs :action GotoSuperMethod<CR>
 nmap ,wl :action MoveTabRight<CR>
 nmap ,wh :action MoveTabLeft<CR>
@@ -18,6 +21,14 @@ vmap ,d "+d
 vmap ,p "+p
 vmap ,P "+P
 nnoremap \ ,
+nmap <C-h> <C-W>h
+nmap <C-l> <C-W>l
+nmap <C-k> <C-W>k
+nmap <C-j> <C-W>j
 set incsearch
 set ignorecase smartcase
 set number
+
+
+nmap ,n :NERDTreeToggle<CR>
+nmap ,rf :NERDTreeFind<CR>

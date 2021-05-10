@@ -129,10 +129,16 @@ let g:vimwiki_use_mouse=1
 
 let g:vimwiki_list = [
     \ {'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md', 'index': 'home'},
-    \ {'path': '~/vimwiki-work/', 'syntax': 'markdown', 'ext': '.md', 'index': 'home'}
+    \ {'path': '~/vimwiki-work/', 'syntax': 'markdown', 'ext': '.md', 'index': 'home',
+        \ 'nested_syntaxes': {'haskell': 'haskell'}}
     \ ]
 
 let g:xml_syntax_folding=1
+
+let g:vimwiki_key_mappings =
+    \ {
+    \ 'table_format': 0,
+    \ }
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")

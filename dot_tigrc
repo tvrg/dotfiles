@@ -1,0 +1,7 @@
+bind main x @git commit --fixup %(commit)
+bind log x @git commit --fixup %(commit)
+bind main R !git rebase --autosquash -i %(commit)
+bind generic s view-status
+set refresh-mode = after-command
+
+bind status U >!tig -- %(file)

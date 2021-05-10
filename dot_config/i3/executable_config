@@ -38,7 +38,7 @@ font pango: Ubuntu Mono 11
 floating_modifier $mod
 
 # start a terminal
-bindcode $mod+36 exec termite
+bindcode $mod+36 exec alacritty
 
 # kill focused window
 bindcode $mod+25 kill

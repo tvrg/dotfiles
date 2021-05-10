@@ -160,3 +160,46 @@ function delete-branches() {
         fzf --ansi --multi --preview="git log --color=always -50 {} --" |
         xargs --no-run-if-empty git branch --delete --force
 }
+
+function setup-itest() {
+    local srcdir=$HOME/src/master
+    local project
+    project=$(cd $srcdir/itests &&
+        fd --maxdepth 1 --type d . |
+        grep -v -e src -e custom-classes |
+        fzf
+    )
+
+    rsync -Pav --delete $srcdir/itests/default/src/test/resources/ffresources/ $srcdir/resources/ffitest/
+    rsync -Pav $srcdir/itests/$project/src/test/resources/ffresources/ $srcdir/resources/ffitest/
+    ln -snf ffitest $srcdir/resources/fact-finder
+}
+
+function sync-wiki() {
+    (cd $HOME/vimwiki-work &&
+        git diff --quiet ||
+        (
+            git stash &&
+            git pull &&
+            git stash pop &&
+            git add . &&
+            git commit -m "Update $(date --rfc-3339=seconds)" &&
+            git push
+        )
+    )
+}
+
+# swarm <manager-node>
+function swarm {
+    service=$(ssh -p 4711 "root@$1" docker service ls --format=\"{{.Replicas}}\\t{{.Name}}\" | fzf | awk '{print $2}')
+    process=$(ssh -p 4711 "root@$1" docker service ps "$service" --format=\"{{.ID}}\\t{{.Name}}\\t{{.Node}}\" | fzf)
+    name=$(echo $process | awk '{print $2}')
+    node=$(echo $process | awk '{print $3}')
+    echo "ssh -p 4711 root@$node docker ps $name"
+}
+
+# swarm-ps <manager-node>
+function swarm-ps {
+    service=$(ssh -p 4711 "root@$1" docker service ls --format=\"{{.Replicas}}\\t{{.Name}}\" | fzf | awk '{print $2}')
+    ssh -p 4711 "root@$1" docker service ps "$service"
+}

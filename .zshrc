@@ -197,6 +197,17 @@ function sync-wiki() {
             git push
         )
     )
+    (cd $HOME/vimwiki &&
+        git diff --quiet ||
+        (
+            git stash &&
+            git pull &&
+            git stash pop &&
+            git add . &&
+            git commit -m "Update $(date --rfc-3339=seconds)" &&
+            git push
+        )
+    )
 }
 
 # swarm <manager-node>

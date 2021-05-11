@@ -82,7 +82,17 @@ unsetopt nomatch
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
+# Aliases
+alias zshconfig="nvim ~/.zshrc"
+alias zshreload="source ~/.zshrc"
+alias ohmyzsh="nvim ~/.oh-my-zsh"
+alias xc='xclip -f -selection clipboard'
+alias docker-pid="docker inspect --format '{{ .State.Pid }}'"
+alias docker-ip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
+alias z="fasd_cd -d"
+alias zz="fasd_cd -d -i"
+alias c='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
 bindkey -M viins '^F' history-incremental-pattern-search-forward
 bindkey '^X^A' fasd-complete    # C-x C-a to do fasd-complete (files and directories)
 bindkey '^X^F' fasd-complete-f  # C-x C-f to do fasd-complete-f (only files)

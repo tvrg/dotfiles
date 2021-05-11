@@ -1,6 +1,6 @@
 [user]
     name = Thomas von Rosenberg
-    email = {{ .email }}
+    email = email
 [core]
     autocrlf = false
     excludesfile = ~/.gitignore

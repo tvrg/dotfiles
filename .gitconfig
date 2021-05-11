@@ -1,6 +1,7 @@
 [user]
     name = Thomas von Rosenberg
-    email = email
+    # email is set via ~/.gitconfig_local
+    # email = <email>
 [core]
     autocrlf = false
     excludesfile = ~/.gitignore
@@ -47,3 +48,5 @@
     file-decoration-style = none
     commit-decoration-style = bold yellow box ul
     file-style = bold yellow ul
+[include]
+    path = ~/.gitconfig_local

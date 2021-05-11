@@ -7,18 +7,11 @@
     pager = delta
 [alias]
     st = status
-    ci = commit
-    br = branch
     co = checkout
-    df = diff
-    ds = diff --staged
-    pom = push origin master
     amend = commit --amend
     lob = log --graph --decorate --format='%C(auto)%h%d %C(green)%aN %C(auto)%s% gD' --abbrev-commit
     lol = log --graph --decorate --format='%C(auto)%h%d %C(green)%aN %C(auto)%s% gD' --abbrev-commit --all --max-count=20
     lola = log --graph --decorate --format='%C(auto)%h%d %C(green)%aN %C(auto)%s% gD' --abbrev-commit --all
-    ls = ls-files
-    ign = ls-files -o -i --exclude-standard
     fixup = !GIT_SEQUENCE_EDITOR=true git rebase -i --autosquash
     wip = !git add -A && git commit -m wip
 [push]

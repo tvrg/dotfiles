@@ -18,10 +18,10 @@
 [push]
     default = current
 [merge]
-    tool = vimdiff
+    tool = nvimdiff
     renameLimit = 100000000
 [mergetool]
-    path = nvim
+    keepBackup = false
 [rerere]
     enabled = true
 [branch]

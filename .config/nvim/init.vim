@@ -455,3 +455,4 @@ nmap <leader>ar <Plug>(coc-rename)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 nmap <Leader>u i<c-r>=substitute(system('uuidgen'),'[\r\n]*$','','')<cr><esc>
+vmap <Leader>u "_s<c-r>=substitute(system('uuidgen'),'[\r\n]*$','','')<cr><esc>

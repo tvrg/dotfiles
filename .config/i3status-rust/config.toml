@@ -19,6 +19,7 @@ unit = "GB"
 interval = 20
 warning = 20.0
 alert = 10.0
+format = "/{available}"
 
 [[block]]
 block = "disk_space"
@@ -29,7 +30,7 @@ unit = "GB"
 interval = 20
 warning = 20.0
 alert = 10.0
-format = "home {available}"
+format = "~{available}"
 
 [[block]]
 block = "memory"

@@ -35,7 +35,7 @@ format = "~{available}"
 [[block]]
 block = "memory"
 display_type = "memory"
-format_mem = "{mem_total_used_percents}"
+format_mem = "{mem_free}/{mem_total} ({mem_total_used_percents})"
 
 [[block]]
 block = "load"

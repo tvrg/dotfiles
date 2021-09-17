@@ -147,12 +147,13 @@ vim.api.nvim_exec([[
   augroup end
 ]], false)
 
--- indentline
-
-vim.g.indentLine_char = '┊'
-vim.g.indentLine_enabled = 1
-vim.g.indentLine_leadingSpaceEnabled = 1
-vim.g.indentLine_leadingSpaceChar = '•'
+vim.api.nvim_exec([[
+  augroup LoadView
+    autocmd!
+    autocmd BufWinLeave *.* mkview
+    autocmd BufWinEnter *.* silent! loadview
+  augroup end
+]], false)
 
 -- ctrlsf
 vim.g.ctrlsf_auto_preview = 1

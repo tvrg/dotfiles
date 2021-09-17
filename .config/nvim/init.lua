@@ -79,7 +79,7 @@ vim.o.list = true;
 vim.o.listchars = 'tab:| ,trail:•'
 
 -- Set highlight on search
-vim.o.hlsearch = false
+vim.o.hlsearch = true
 vim.o.incsearch = true
 
 -- hide default mode
@@ -183,6 +183,7 @@ keymap("i", "<CR>", "compe#confirm('<CR>')",
        {expr = true, silent = true, noremap = true})
 keymap("i", "<C-e>", "compe#close('<C-e>')",
        {expr = true, silent = true, noremap = true})
+keymap("n", "<leader>h", ":nohlsearch<CR>", {silent = true, noremap = true})
 
 -- luochen1990/rainbow
 vim.g.rainbow_active = 1

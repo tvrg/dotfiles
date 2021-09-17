@@ -162,9 +162,6 @@ function select_branch() {
   return $ret
 }
 
-zle     -N   select_branch
-bindkey '^B' select_branch
-
 unalias ls
 alias ls="exa -la"
 

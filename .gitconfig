@@ -1,5 +1,5 @@
 [user]
-    name = Thomas von Rosenberg
+	name = Thomas von Rosenberg
     # email is set via ~/.gitconfig_local
     # email = <email>
 [core]

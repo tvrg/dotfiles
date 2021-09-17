@@ -21,16 +21,12 @@ local use = require('packer').use
 require('packer').startup(function()
     use 'wbthomason/packer.nvim' -- Package manager
 
-    use 'airblade/vim-rooter' -- change cwd to git root
-    use 'rhysd/vim-grammarous' -- languagetool spellcheck
-    use 'mbbill/undotree' -- undo tree
     use 'tpope/vim-fugitive' -- Git commands in nvim
     use 'sbdchd/neoformat' -- format everything
 
     -- ui
     use 'morhetz/gruvbox' -- Theme
     use 'hoob3rt/lualine.nvim' -- status line
-    use 'Yggdroot/indentLine' -- show spaces / tabs everywhere
     use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}} -- git signs
 
     -- navigation
@@ -44,7 +40,6 @@ require('packer').startup(function()
     use 'tpope/vim-commentary' -- Code Comment stuff, f.ex gc
     use 'hrsh7th/nvim-compe' -- Autocompletion
     use 'ntpeters/vim-better-whitespace' -- show trailing whitespaces in red
-    use 'cohama/lexima.vim' -- auto close ()
     use 'tpope/vim-surround' -- surround operations
     use 'editorconfig/editorconfig-vim' -- use tabstop / tabwidth from .editorconfig
 
@@ -154,10 +149,6 @@ vim.g.indentLine_leadingSpaceChar = '•'
 vim.g.ctrlsf_auto_preview = 1
 vim.g.ctrlsf_auto_focus = {at = 'start'}
 vim.g.ctrlsf_mapping = {next = 'n', prev = 'N'}
-
--- () auto close
-vim.g.lexima_no_default_rules = true
-vim.cmd 'call lexima#set_default_rules()'
 
 -- key mapping
 

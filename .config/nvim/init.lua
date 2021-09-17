@@ -131,10 +131,10 @@ if vim.fn.has('termguicolors') then vim.o.termguicolors = true end
 vim.o.background = 'light'
 vim.cmd [[colorscheme solarized8]]
 
--- Remap space as leader key
-keymap('', '<Space>', '<Nop>', {noremap = true, silent = true})
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+-- Remap , as leader key
+vim.g.mapleader = ","
+vim.g.maplocalleader = ","
+keymap('n', '\\', ',', {noremap = true, silent = true})
 
 -- Highlight on yank
 vim.api.nvim_exec([[

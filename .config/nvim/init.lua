@@ -70,9 +70,6 @@ vim.o.shortmess = vim.o.shortmess .. 'c'
 -- Incremental live completion
 vim.o.inccommand = "nosplit"
 
--- tabs
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
@@ -103,8 +100,17 @@ vim.o.mouse = "a"
 -- Enable break indent
 vim.o.breakindent = true
 
--- coller tabs
+-- Cooler tabs
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
 vim.o.expandtab = true
+-- Don't expand tabs in golang files
+vim.api.nvim_exec([[
+    augroup NoExpandTab
+        autocmd!
+        autocmd FileType go setlocal noexpandtab
+    augroup end
+]], false)
 
 -- Save undo history
 vim.o.undofile = true

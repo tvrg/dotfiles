@@ -70,7 +70,6 @@ vim.o.shortmess = vim.o.shortmess .. 'c'
 -- Incremental live completion
 vim.o.inccommand = "nosplit"
 
-
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
 
@@ -173,14 +172,19 @@ keymap("n", "<leader>P", '"+P', {noremap = true})
 keymap("v", "<leader>p", '"+p', {noremap = true})
 keymap("v", "<leader>P", '"+P', {noremap = true})
 keymap("n", "<leader>y", '"+y', {noremap = true})
+keymap("v", "<leader>y", '"+y', {silent = true, noremap = true})
 keymap("n", "<leader>d", '"+d', {noremap = true})
-keymap("n", "<leader>n", ':GFiles --cached --others --exclude-standar<CR>',
+keymap("v", "<leader>d", '"+d', {silent = true, noremap = true})
+keymap("n", "<leader>tn", ':tabnew<CR>', {silent = true, noremap = true})
+keymap("n", "<leader>+", ':resize +4<CR>', {silent = true, noremap = true})
+keymap("n", "<leader>-", ':resize -4<CR>', {silent = true, noremap = true})
+keymap("n", "+", ':vertical resize +4<CR>', {silent = true, noremap = true})
+keymap("n", "-", ':vertical resize -4<CR>', {silent = true, noremap = true})
+keymap("n", "<leader>n", ':GFiles --cached --others --exclude-standard<CR>',
        {silent = true, noremap = true})
 keymap("n", "<leader>N", ':Files<CR>', {silent = true, noremap = true})
 keymap("n", "<leader>b", ':Buffers<CR>', {silent = true, noremap = true})
 keymap("n", "<leader>e", ':NvimTreeToggle<CR>', {silent = true, noremap = true})
-keymap("v", "<leader>y", '"+y', {silent = true, noremap = true})
-keymap("v", "<leader>d", '"+d', {silent = true, noremap = true})
 keymap("i", "<C-Space>", "compe#complete()",
        {expr = true, silent = true, noremap = true})
 keymap("i", "<CR>", "compe#confirm('<CR>')",
@@ -188,6 +192,13 @@ keymap("i", "<CR>", "compe#confirm('<CR>')",
 keymap("i", "<C-e>", "compe#close('<C-e>')",
        {expr = true, silent = true, noremap = true})
 keymap("n", "<leader>h", ":nohlsearch<CR>", {silent = true, noremap = true})
+-- easily edit and reload init.lua
+keymap("n", "<leader>rc", ":edit $MYVIMRC<CR>", {silent = true, noremap = true})
+keymap("n", "<leader>rl", ":source $MYVIMRC<CR>",
+       {silent = true, noremap = true})
+-- swap ' and `
+keymap("n", "'", "`", {silent = true, noremap = true})
+keymap("n", "`", "'", {silent = true, noremap = true})
 
 -- luochen1990/rainbow
 vim.g.rainbow_active = 1

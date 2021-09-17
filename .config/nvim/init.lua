@@ -200,6 +200,25 @@ keymap("n", "<leader>rl", ":source $MYVIMRC<CR>",
 keymap("n", "'", "`", {silent = true, noremap = true})
 keymap("n", "`", "'", {silent = true, noremap = true})
 
+-- simplified window switching
+keymap("n", "<C-l>", "<C-w><C-l>", {silent = true, noremap = true})
+keymap("n", "<C-h>", "<C-w><C-h>", {silent = true, noremap = true})
+keymap("n", "<C-j>", "<C-w><C-j>", {silent = true, noremap = true})
+keymap("n", "<C-k>", "<C-w><C-k>", {silent = true, noremap = true})
+
+-- stay in visual mode after shifting
+keymap("v", ">", ">gv", {silent = true, noremap = true})
+keymap("v", "<", "<gv", {silent = true, noremap = true})
+
+-- do not move when using *
+keymap("n", "*", ":let star_view=winsaveview()<CR>*:call winrestview(star_view)<CR>", {silent = true, noremap = true})
+
+keymap("n", "<C-@>", "<C-^>", {silent = true, noremap = true})
+
+-- weird uuid mappings
+keymap("n", "<Leader>u", 'a<c-r>=substitute(system("uuidgen"),"[\\r\\n]*$","","")<CR><ESC>', {silent = true, noremap = true})
+keymap("v", "<Leader>u", "\"_s<c-r>=substitute(system('uuidgen'),'[\\r\\n]*$','','')<CR><ESC>", {silent = true, noremap = true})
+
 -- luochen1990/rainbow
 vim.g.rainbow_active = 1
 

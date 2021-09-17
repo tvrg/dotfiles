@@ -126,6 +126,9 @@ vim.o.smartcase = true
 vim.o.updatetime = 250
 vim.wo.signcolumn = "yes"
 
+-- Put vertical splits to the right
+vim.o.splitright = true
+
 if vim.fn.has('termguicolors') then vim.o.termguicolors = true end
 
 vim.o.background = 'light'

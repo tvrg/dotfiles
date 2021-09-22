@@ -42,6 +42,7 @@ require('packer').startup(function()
     use 'ntpeters/vim-better-whitespace' -- show trailing whitespaces in red
     use 'tpope/vim-surround' -- surround operations
     use 'editorconfig/editorconfig-vim' -- use tabstop / tabwidth from .editorconfig
+    use 'tpope/vim-unimpaired' -- complementary pairs of mappings
 
     -- lsp
     use 'neovim/nvim-lspconfig' -- lsp configs for builtin language server client

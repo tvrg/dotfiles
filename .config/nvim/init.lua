@@ -181,9 +181,9 @@ keymap("n", "<leader>+", ':resize +4<CR>', {silent = true, noremap = true})
 keymap("n", "<leader>-", ':resize -4<CR>', {silent = true, noremap = true})
 keymap("n", "+", ':vertical resize +4<CR>', {silent = true, noremap = true})
 keymap("n", "-", ':vertical resize -4<CR>', {silent = true, noremap = true})
-keymap("n", "<leader>n", ':GFiles --cached --others --exclude-standard<CR>',
+keymap("n", "<C-N>", ':GFiles --cached --others --exclude-standard<CR>',
        {silent = true, noremap = true})
-keymap("n", "<leader>N", ':Files<CR>', {silent = true, noremap = true})
+keymap("n", "<C-P>", ':Files<CR>', {silent = true, noremap = true})
 keymap("n", "<leader>b", ':Buffers<CR>', {silent = true, noremap = true})
 keymap("n", "<leader>e", ':NvimTreeToggle<CR>', {silent = true, noremap = true})
 keymap("i", "<C-Space>", "compe#complete()",

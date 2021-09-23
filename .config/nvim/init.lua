@@ -102,6 +102,8 @@ vim.o.mouse = "a"
 -- Enable break indent
 vim.o.breakindent = true
 
+vim.o.smartindent = true
+
 -- Cooler tabs
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
@@ -113,6 +115,9 @@ vim.cmd([[
         autocmd FileType go setlocal noexpandtab
     augroup end
 ]])
+
+-- Don't insert two spaces after a sentence.
+vim.o.joinspaces = false
 
 -- Save undo history
 vim.o.undofile = true

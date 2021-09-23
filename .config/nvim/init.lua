@@ -10,12 +10,12 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
                 install_path)
 end
 
-vim.api.nvim_exec([[
+vim.cmd([[
     augroup Packer
         autocmd!
         autocmd BufWritePost init.lua PackerCompile
     augroup end
-]], false)
+]])
 
 local use = require('packer').use
 require('packer').startup(function()
@@ -60,6 +60,8 @@ require('packer').startup(function()
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} -- syntax tree parser
     use 'windwp/nvim-ts-autotag' -- close html tags via treesitter
     use 'JoosepAlviste/nvim-ts-context-commentstring'
+    use 'nvim-treesitter/nvim-treesitter'
+    use 'nvim-treesitter/nvim-treesitter-textobjects'
     -- cool but really slow
     -- use 'haringsrob/nvim_context_vt' -- show context on closing brackets
     -- use 'romgrk/nvim-treesitter-context' -- show method context
@@ -105,12 +107,12 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
 -- Don't expand tabs in golang files
-vim.api.nvim_exec([[
+vim.cmd([[
     augroup NoExpandTab
         autocmd!
         autocmd FileType go setlocal noexpandtab
     augroup end
-]], false)
+]])
 
 -- Save undo history
 vim.o.undofile = true
@@ -140,20 +142,20 @@ vim.g.maplocalleader = ","
 keymap('n', '\\', ',', {noremap = true, silent = true})
 
 -- Highlight on yank
-vim.api.nvim_exec([[
+vim.cmd([[
   augroup YankHighlight
     autocmd!
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
   augroup end
-]], false)
+]])
 
-vim.api.nvim_exec([[
+vim.cmd([[
   augroup LoadView
     autocmd!
     autocmd BufWinLeave *.* mkview
     autocmd BufWinEnter *.* silent! loadview
   augroup end
-]], false)
+]])
 
 -- ctrlsf
 vim.g.ctrlsf_auto_preview = 1
@@ -212,13 +214,19 @@ keymap("v", ">", ">gv", {silent = true, noremap = true})
 keymap("v", "<", "<gv", {silent = true, noremap = true})
 
 -- do not move when using *
-keymap("n", "*", ":let star_view=winsaveview()<CR>*:call winrestview(star_view)<CR>", {silent = true, noremap = true})
+keymap("n", "*",
+       ":let star_view=winsaveview()<CR>*:call winrestview(star_view)<CR>",
+       {silent = true, noremap = true})
 
 keymap("n", "<C-@>", "<C-^>", {silent = true, noremap = true})
 
 -- weird uuid mappings
-keymap("n", "<Leader>u", 'a<c-r>=substitute(system("uuidgen"),"[\\r\\n]*$","","")<CR><ESC>', {silent = true, noremap = true})
-keymap("v", "<Leader>u", "\"_s<c-r>=substitute(system('uuidgen'),'[\\r\\n]*$','','')<CR><ESC>", {silent = true, noremap = true})
+keymap("n", "<Leader>u",
+       'a<c-r>=substitute(system("uuidgen"),"[\\r\\n]*$","","")<CR><ESC>',
+       {silent = true, noremap = true})
+keymap("v", "<Leader>u",
+       "\"_s<c-r>=substitute(system('uuidgen'),'[\\r\\n]*$','','')<CR><ESC>",
+       {silent = true, noremap = true})
 
 -- luochen1990/rainbow
 vim.g.rainbow_active = 1
@@ -379,7 +387,7 @@ local on_attach = function(client, bufnr)
     })
 
     if client.resolved_capabilities.document_highlight then
-        vim.api.nvim_exec([[
+        vim.cmd([[
             augroup lsp_document_highlight
                 autocmd! * <buffer>
                 highlight LspReferenceText cterm=bold ctermbg=DarkGray gui=bold guibg=#a89984 guifg=#282828
@@ -389,7 +397,7 @@ local on_attach = function(client, bufnr)
                 autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
                 autocmd CursorMovedI <buffer> lua vim.lsp.buf.clear_references()
             augroup END
-        ]], false)
+        ]])
     end
 
     buf_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>',
@@ -438,6 +446,32 @@ require'nvim-treesitter.configs'.setup {
         }
     }
 }
+
+require'nvim-treesitter.configs'.setup {
+  textobjects = {
+    move = {
+      enable = true,
+      set_jumps = true, -- whether to set jumps in the jumplist
+      goto_next_start = {
+        ["]m"] = "@function.outer",
+        ["]]"] = "@class.outer",
+      },
+      goto_next_end = {
+        ["]M"] = "@function.outer",
+        ["]["] = "@class.outer",
+      },
+      goto_previous_start = {
+        ["[m"] = "@function.outer",
+        ["[["] = "@class.outer",
+      },
+      goto_previous_end = {
+        ["[M"] = "@function.outer",
+        ["[]"] = "@class.outer",
+      },
+    },
+  },
+}
+
 local eslint = require 'diagnosticls-configs.linters.eslint'
 require'diagnosticls-configs'.setup {
     ['typescript'] = {linter = eslint},

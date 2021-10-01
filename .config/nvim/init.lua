@@ -113,6 +113,7 @@ vim.cmd([[
     augroup NoExpandTab
         autocmd!
         autocmd FileType go setlocal noexpandtab
+        autocmd FileType groovy setlocal noexpandtab
     augroup end
 ]])
 

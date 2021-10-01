@@ -276,29 +276,29 @@ vim.g.nvim_tree_icons = {
 }
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 require'nvim-tree'.setup {
-    nvim_tree_side = "left",
-    nvim_tree_width = 30,
-    nvim_tree_ignore = {".git", "node_modules", ".cache"},
-    nvim_tree_gitignore = 1,
-    nvim_tree_auto_ignore_ft = {"dashboard"}, -- don't open tree on specific fiypes.
-    nvim_tree_auto_open = 0,
-    nvim_tree_auto_close = 0,
-    nvim_tree_quit_on_open = 0, -- closes tree when file's opened
-    nvim_tree_follow = 1,
-    nvim_tree_indent_markers = 1,
-    nvim_tree_hide_dotfiles = 1,
-    nvim_tree_git_hl = 0,
-    nvim_tree_highlight_opened_files = 0,
-    nvim_tree_root_folder_modifier = table.concat {
+    side = "left",
+    width = 30,
+    ignore = {".git", "node_modules", ".cache"},
+    gitignore = 1,
+    auto_ignore_ft = {"dashboard"}, -- don't open tree on specific fiypes.
+    auto_open = 0,
+    auto_close = 0,
+    quit_on_open = 0, -- closes tree when file's opened
+    follow = 1,
+    indent_markers = 1,
+    hide_dotfiles = 1,
+    git_hl = 0,
+    highlight_opened_files = 0,
+    root_folder_modifier = table.concat {
         ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??"
     },
-    nvim_tree_tab_open = 0,
-    nvim_tree_allow_resize = 1,
-    nvim_tree_add_trailing = 0, -- append a trailing slash to folder names
-    nvim_tree_disable_netrw = 1,
-    nvim_tree_hijack_netrw = 0,
-    nvim_tree_update_cwd = 0,
-    nvim_tree_bindings = {
+    tab_open = 0,
+    allow_resize = 1,
+    add_trailing = 0, -- append a trailing slash to folder names
+    disable_netrw = 1,
+    hijack_netrw = 0,
+    update_cwd = 0,
+    bindings = {
         {key = {"<CR>", "o", "<2-LeftMouse>"}, cb = tree_cb "edit"},
         {key = {"<2-RightMouse>", "<C-]>"}, cb = tree_cb "cd"},
         {key = "<C-v>", cb = tree_cb "vsplit"},

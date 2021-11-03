@@ -17,11 +17,11 @@ bindcode $mod+33 exec "$HOME/.i3/bin/suspendandlock"
 bindcode $mod+42 exec "setxkbmap de"
 bindcode $mod+48 exec "setxkbmap dvorak-tvr basic"
 
-bindcode $mod+Shift+Control+44 move workspace to left
-bindcode $mod+Shift+Control+46 move workspace to right
+bindcode $mod+Shift+Control+44 move workspace to output left
+bindcode $mod+Shift+Control+46 move workspace to output right
 
-bindcode $mod+Shift+Control+113 move workspace to left
-bindcode $mod+Shift+Control+114 move workspace to right
+bindcode $mod+Shift+Control+113 move workspace to output left
+bindcode $mod+Shift+Control+114 move workspace to output right
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode

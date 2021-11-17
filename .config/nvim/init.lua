@@ -20,6 +20,7 @@ vim.cmd([[
 local use = require('packer').use
 require('packer').startup(function()
     use 'wbthomason/packer.nvim' -- Package manager
+    use 'airblade/vim-rooter' -- change cwd to git root
 
     use 'tpope/vim-fugitive' -- Git commands in nvim
     use 'sbdchd/neoformat' -- format everything

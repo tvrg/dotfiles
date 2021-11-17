@@ -173,6 +173,12 @@ function delete-branches() {
         xargs --no-run-if-empty git branch --delete --force
 }
 
+function pacman-delete() {
+    pacman -Qqte |
+        fzf --ansi --multi --preview "pacman -Qi {}" |
+        sudo pacman -Rs -
+}
+
 function setup-itest() {
     local srcdir=$HOME/src/master
     local project

@@ -64,6 +64,7 @@ require('packer').startup(function()
     -- cool but really slow
     -- use 'haringsrob/nvim_context_vt' -- show context on closing brackets
     -- use 'romgrk/nvim-treesitter-context' -- show method context
+    use 'vimwiki/vimwiki'
 end)
 
 -- https://github.com/hrsh7th/nvim-compe#how-to-remove-pattern-not-found
@@ -501,3 +502,15 @@ require'rust-tools'.setup({
 })
 
 vim.g.fzf_layout = {down = '50%'}
+
+
+vim.g.localvimrc_ask = 1
+-- mouse inside vimwiki
+vim.g.vimwiki_use_mouse = 1
+
+vim.g.vimwiki_list = {
+    {path = '~/vimwiki/', syntax = 'markdown', ext = '.md', index = 'home'},
+    {path = '~/vimwiki-work/', syntax = 'markdown', ext = '.md', index = 'home'}
+   }
+
+vim.g.vimwiki_key_mappings = { table_format = 0 }

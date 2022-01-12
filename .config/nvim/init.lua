@@ -427,6 +427,7 @@ local on_attach = function(client, bufnr)
     buf_keymap('n', 'gi', ':Implementations<CR>',
                {silent = true, noremap = true})
     buf_keymap('n', 'gr', ':References<CR>', {silent = true, noremap = true})
+    buf_keymap('n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>', {silent = true, noremap = true})
     buf_keymap('n', 'gm', ':DocumentSymbols<CR>',
                {silent = true, noremap = true})
     buf_keymap('n', 'gM', ':WorkspaceSymbols<CR>',

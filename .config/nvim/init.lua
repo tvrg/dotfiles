@@ -270,7 +270,7 @@ require'compe'.setup {
     max_menu_width = 100,
     documentation = true,
 
-    source = {nvim_lsp = {priority = 1000}, path = true}
+    source = {nvim_diagnostic = {priority = 1000}, path = true}
 }
 
 -- file drawer
@@ -360,7 +360,7 @@ require'lualine'.setup {
         lualine_c = {
             {
                 'diagnostics',
-                sources = {'nvim_lsp'},
+                sources = {'nvim_diagnostic'},
                 symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'}
             }, {
                 'lsp_progress',

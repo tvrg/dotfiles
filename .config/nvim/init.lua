@@ -526,3 +526,7 @@ vim.g.vimwiki_list = {
    }
 
 vim.g.vimwiki_key_mappings = { table_format = 0 }
+
+vim.g.neoformat_rust_rustfmt = { exe = 'rustfmt', args = {'--edition 2021' }, stdin = 1 }
+
+vim.g.neoformat_enabled_rust = {'rustfmt'}

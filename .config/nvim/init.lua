@@ -202,8 +202,8 @@ keymap("n", "<C-N>", ':GFiles --cached --others --exclude-standard<CR>',
        {silent = true, noremap = true})
 keymap("n", "<C-P>", ':Files<CR>', {silent = true, noremap = true})
 keymap("n", "<leader>b", ':Buffers<CR>', {silent = true, noremap = true})
-keymap("n", "<leader>e", ':NvimTreeToggle<CR>', {silent = true, noremap = true})
-keymap("n", "<leader>n", ':NvimTreeToggle<CR>', {silent = true, noremap = true})
+keymap("n", "<leader>e", ':NvimTreeFindFileToggle<CR>', {silent = true, noremap = true})
+keymap("n", "<leader>n", ':NvimTreeFindFileToggle<CR>', {silent = true, noremap = true})
 keymap("i", "<C-Space>", "compe#complete()",
        {expr = true, silent = true, noremap = true})
 keymap("i", "<CR>", "compe#confirm('<CR>')",

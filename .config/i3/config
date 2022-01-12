@@ -30,7 +30,8 @@ bindcode $mod+Shift+Control+114 move workspace to output right
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-font pango: Ubuntu Mono 11
+# font pango: Ubuntu Mono 6
+font pango:monospace 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -160,8 +161,6 @@ mode "resize" {
 bindcode $mod+59 mode "resize"
 
 bar {
-    font pango: Ubuntu Mono 11
-
     position bottom
     status_command i3status-rs $HOME/.config/i3status-rust/config.toml
     colors {

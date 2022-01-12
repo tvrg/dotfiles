@@ -99,6 +99,7 @@ alias zz="fasd_cd -d -i"
 alias c='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 bindkey -M viins '^F' history-incremental-pattern-search-forward
+bindkey -M vicmd v edit-command-line
 bindkey '^X^A' fasd-complete    # C-x C-a to do fasd-complete (files and directories)
 bindkey '^X^F' fasd-complete-f  # C-x C-f to do fasd-complete-f (only files)
 bindkey '^X^D' fasd-complete-d  # C-x C-d to do fasd-complete-d (only directories)

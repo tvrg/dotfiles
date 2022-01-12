@@ -41,9 +41,10 @@ bindcode $mod+36 exec alacritty
 # kill focused window
 bindcode $mod+25 kill
 
-# start dmenu (a program launcher)
+# start rofi
 bindcode $mod+32 exec rofi -show run
 bindcode $mod+27 exec bwmenu --clear=5
+bindcode $mod+61 exec gopass ls --flat | rofi -dmenu -i -p gopass | xargs -I {} --no-run-if-empty gopass show -c "{}"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that

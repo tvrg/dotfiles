@@ -118,6 +118,14 @@ vim.cmd([[
     augroup end
 ]])
 
+-- secure settings for gopass
+vim.cmd([[
+    augroup Gopass
+        autocmd!
+        autocmd BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile
+    augroup end
+]])
+
 -- Don't insert two spaces after a sentence.
 vim.o.joinspaces = false
 

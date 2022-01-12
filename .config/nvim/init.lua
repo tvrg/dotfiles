@@ -210,7 +210,8 @@ keymap("i", "<CR>", "compe#confirm('<CR>')",
        {expr = true, silent = true, noremap = true})
 keymap("i", "<C-e>", "compe#close('<C-e>')",
        {expr = true, silent = true, noremap = true})
-keymap("n", "<leader>h", ":nohlsearch<CR>", {silent = true, noremap = true})
+-- FIXME: clashes with gitsign mappings, see :map ,h
+keymap("n", "<leader>hc", ":nohlsearch<CR>", {silent = true, noremap = true})
 -- easily edit and reload init.lua
 keymap("n", "<leader>rc", ":edit $MYVIMRC<CR>", {silent = true, noremap = true})
 keymap("n", "<leader>rl", ":source $MYVIMRC<CR>",

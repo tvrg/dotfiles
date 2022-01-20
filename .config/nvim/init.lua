@@ -74,6 +74,7 @@ require('packer').startup(function()
     -- use 'haringsrob/nvim_context_vt' -- show context on closing brackets
     -- use 'romgrk/nvim-treesitter-context' -- show method context
     use 'vimwiki/vimwiki'
+    use 'aklt/plantuml-syntax'
 end)
 
 -- https://github.com/hrsh7th/nvim-compe#how-to-remove-pattern-not-found

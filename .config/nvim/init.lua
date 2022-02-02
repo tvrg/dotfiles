@@ -447,11 +447,11 @@ local on_attach = function(client, bufnr)
     buf_keymap('n', '<leader>aF', '<cmd>lua vim.lsp.buf.formatting()<CR>',
                {silent = true, noremap = true})
     buf_keymap('n', '<leader>dl',
-               '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
+               '<cmd>lua vim.diagnostic.open_float(0, {scope="line"})<CR>',
                {silent = true, noremap = true})
-    buf_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',
+    buf_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next({float = false})<CR>',
                {silent = true, noremap = true})
-    buf_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',
+    buf_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev({float = false})<CR>',
                {silent = true, noremap = true})
     buf_keymap('n', '<leader>dd', ':Diagnostics<CR>',
                {silent = true, noremap = true})

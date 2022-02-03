@@ -443,7 +443,9 @@ local on_attach = function(client, bufnr)
     buf_keymap('n', 'gi', ':Implementations<CR>',
                {silent = true, noremap = true})
     buf_keymap('n', 'gr', ':References<CR>', {silent = true, noremap = true})
-    buf_keymap('n', '<leader>gr', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>', {silent = true, noremap = true})
+    buf_keymap('n', '<leader>gr',
+               '<cmd>lua vim.lsp.buf.incoming_calls({includeDeclaration = false})<CR>',
+               {silent = true, noremap = true})
     buf_keymap('n', 'gm', '<cmd>lua vim.lsp.buf.document_symbol()<CR>',
                {silent = true, noremap = true})
     buf_keymap('n', 'gM', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>',

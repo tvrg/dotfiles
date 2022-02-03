@@ -481,11 +481,17 @@ require'nvim-treesitter.configs'.setup {
             scope_incremental = ";",
             node_decremental = "g."
         }
-    }
-}
-
-require'nvim-treesitter.configs'.setup {
+    },
     textobjects = {
+        select = {
+            enable = true,
+            keymaps = {
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+                ["ac"] = "@class.outer",
+                ["ic"] = "@class.inner"
+            }
+        },
         move = {
             enable = true,
             set_jumps = true, -- whether to set jumps in the jumplist

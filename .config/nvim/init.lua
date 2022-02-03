@@ -219,8 +219,10 @@ keymap("n", "<C-N>", ':GFiles --cached --others --exclude-standard<CR>',
        {silent = true, noremap = true})
 keymap("n", "<C-P>", ':Files<CR>', {silent = true, noremap = true})
 keymap("n", "<leader>b", ':Buffers<CR>', {silent = true, noremap = true})
-keymap("n", "<leader>e", ':NvimTreeFindFileToggle<CR>', {silent = true, noremap = true})
-keymap("n", "<leader>n", ':NvimTreeFindFileToggle<CR>', {silent = true, noremap = true})
+keymap("n", "<leader>e", ':NvimTreeFindFileToggle<CR>',
+       {silent = true, noremap = true})
+keymap("n", "<leader>n", ':NvimTreeFindFileToggle<CR>',
+       {silent = true, noremap = true})
 -- FIXME: clashes with gitsign mappings, see :map ,h
 keymap("n", "<leader>hc", ":nohlsearch<CR>", {silent = true, noremap = true})
 -- easily edit and reload init.lua
@@ -438,8 +440,10 @@ local on_attach = function(client, bufnr)
                {silent = true, noremap = true})
     buf_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>',
                {silent = true, noremap = true})
-    buf_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', {silent = true, noremap = true})
-    buf_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {silent = true, noremap = true})
+    buf_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>',
+               {silent = true, noremap = true})
+    buf_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>',
+               {silent = true, noremap = true})
     buf_keymap('n', 'gi', ':Implementations<CR>',
                {silent = true, noremap = true})
     buf_keymap('n', 'gr', ':References<CR>', {silent = true, noremap = true})
@@ -454,14 +458,19 @@ local on_attach = function(client, bufnr)
                {silent = true, noremap = true})
     buf_keymap('n', '<leader>aa', '<cmd>lua vim.lsp.buf.code_action()<CR>',
                {silent = true, noremap = true})
+    buf_keymap('v', '<leader>aa',
+               '<cmd>lua vim.lsp.buf.range_code_action()<CR>',
+               {silent = true, noremap = true})
     buf_keymap('n', '<leader>aF', '<cmd>lua vim.lsp.buf.formatting()<CR>',
                {silent = true, noremap = true})
     buf_keymap('n', '<leader>dl',
                '<cmd>lua vim.diagnostic.open_float(0, {scope="line"})<CR>',
                {silent = true, noremap = true})
-    buf_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next({float = false})<CR>',
+    buf_keymap('n', ']d',
+               '<cmd>lua vim.diagnostic.goto_next({float = false})<CR>',
                {silent = true, noremap = true})
-    buf_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev({float = false})<CR>',
+    buf_keymap('n', '[d',
+               '<cmd>lua vim.diagnostic.goto_prev({float = false})<CR>',
                {silent = true, noremap = true})
     buf_keymap('n', '<leader>dd', '<cmd>lua vim.diagnostic.setloclist()<CR>',
                {silent = true, noremap = true})
@@ -541,7 +550,6 @@ require'rust-tools'.setup({
 
 vim.g.fzf_layout = {down = '50%'}
 
-
 vim.g.localvimrc_ask = 1
 -- mouse inside vimwiki
 vim.g.vimwiki_use_mouse = 1
@@ -549,10 +557,14 @@ vim.g.vimwiki_use_mouse = 1
 vim.g.vimwiki_list = {
     {path = '~/vimwiki/', syntax = 'markdown', ext = '.md', index = 'home'},
     {path = '~/vimwiki-work/', syntax = 'markdown', ext = '.md', index = 'home'}
-   }
+}
 
-vim.g.vimwiki_key_mappings = { table_format = 0 }
+vim.g.vimwiki_key_mappings = {table_format = 0}
 
-vim.g.neoformat_rust_rustfmt = { exe = 'rustfmt', args = {'--edition 2021' }, stdin = 1 }
+vim.g.neoformat_rust_rustfmt = {
+    exe = 'rustfmt',
+    args = {'--edition 2021'},
+    stdin = 1
+}
 
 vim.g.neoformat_enabled_rust = {'rustfmt'}

@@ -135,6 +135,14 @@ vim.cmd([[
     augroup end
 ]])
 
+-- rust autocommands
+vim.cmd([[
+    augroup Rust
+        autocmd!
+        autocmd BufWritePre *.rs Neoformat
+    augroup end
+]])
+
 -- Don't insert two spaces after a sentence.
 vim.o.joinspaces = false
 
@@ -193,7 +201,7 @@ keymap("n", "ZW", ':w<CR>', {silent = true, noremap = true})
 keymap("n", "<leader>f", ':Rg<CR>', {silent = true, noremap = true})
 keymap("n", "<leader>au", ':UndotreeToggle<CR>', {silent = true, noremap = true})
 keymap("n", "<leader>as", ':CtrlSF ', {noremap = true})
-keymap("n", "<leader>af", ':Neoformat<CR> ', {noremap = true})
+keymap("n", "<leader>af", ':Neoformat<CR>', {noremap = true})
 keymap("n", "<leader>p", '"+p', {noremap = true})
 keymap("n", "<leader>P", '"+P', {noremap = true})
 keymap("v", "<leader>p", '"+p', {noremap = true})

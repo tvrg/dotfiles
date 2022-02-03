@@ -438,19 +438,19 @@ local on_attach = function(client, bufnr)
                {silent = true, noremap = true})
     buf_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>',
                {silent = true, noremap = true})
-    buf_keymap('n', 'gD', ':Declarations<CR>', {silent = true, noremap = true})
-    buf_keymap('n', 'gd', ':Definitions<CR>', {silent = true, noremap = true})
+    buf_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', {silent = true, noremap = true})
+    buf_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {silent = true, noremap = true})
     buf_keymap('n', 'gi', ':Implementations<CR>',
                {silent = true, noremap = true})
     buf_keymap('n', 'gr', ':References<CR>', {silent = true, noremap = true})
-    buf_keymap('n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>', {silent = true, noremap = true})
-    buf_keymap('n', 'gm', ':DocumentSymbols<CR>',
+    buf_keymap('n', '<leader>gr', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>', {silent = true, noremap = true})
+    buf_keymap('n', 'gm', '<cmd>lua vim.lsp.buf.document_symbol()<CR>',
                {silent = true, noremap = true})
-    buf_keymap('n', 'gM', ':WorkspaceSymbols<CR>',
+    buf_keymap('n', 'gM', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>',
                {silent = true, noremap = true})
     buf_keymap('n', '<leader>ar', '<cmd>lua vim.lsp.buf.rename()<CR>',
                {silent = true, noremap = true})
-    buf_keymap('n', '<leader>aa', ':CodeActions<CR>',
+    buf_keymap('n', '<leader>aa', '<cmd>lua vim.lsp.buf.code_action()<CR>',
                {silent = true, noremap = true})
     buf_keymap('n', '<leader>aF', '<cmd>lua vim.lsp.buf.formatting()<CR>',
                {silent = true, noremap = true})
@@ -461,7 +461,7 @@ local on_attach = function(client, bufnr)
                {silent = true, noremap = true})
     buf_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev({float = false})<CR>',
                {silent = true, noremap = true})
-    buf_keymap('n', '<leader>dd', ':Diagnostics<CR>',
+    buf_keymap('n', '<leader>dd', '<cmd>lua vim.diagnostic.setloclist()<CR>',
                {silent = true, noremap = true})
 end
 

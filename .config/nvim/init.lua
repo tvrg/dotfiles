@@ -288,7 +288,6 @@ require'nvim-tree'.setup {
     gitignore = 1,
     auto_ignore_ft = {"dashboard"}, -- don't open tree on specific fiypes.
     auto_open = 0,
-    auto_close = 0,
     quit_on_open = 0, -- closes tree when file's opened
     follow = 1,
     indent_markers = 1,

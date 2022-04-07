@@ -36,6 +36,7 @@ require('packer').startup(function()
     use 'christoomey/vim-tmux-navigator' -- move between tmux & vim windows with same shortcuts
     use 'dyng/ctrlsf.vim' -- find string in whole project
     use {'kyazdani42/nvim-tree.lua'} -- file explorer
+    use {'kevinhwang91/nvim-bqf', ft = 'qf'}
 
     -- typing stuff
     use 'tpope/vim-commentary' -- Code Comment stuff, f.ex gc
@@ -435,9 +436,9 @@ local on_attach = function(client, bufnr)
                {silent = true, noremap = true})
     buf_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>',
                {silent = true, noremap = true})
-    buf_keymap('n', 'gi', ':Implementations<CR>',
+    buf_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>',
                {silent = true, noremap = true})
-    buf_keymap('n', 'gr', ':References<CR>', {silent = true, noremap = true})
+    buf_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', {silent = true, noremap = true})
     buf_keymap('n', '<leader>gr',
                '<cmd>lua vim.lsp.buf.incoming_calls({includeDeclaration = false})<CR>',
                {silent = true, noremap = true})

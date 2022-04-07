@@ -62,9 +62,12 @@ require('packer').startup(function()
     }
     use 'simrat39/rust-tools.nvim' -- additional rust analyzer tools, f.ex show types in method chain
     use 'ray-x/lsp_signature.nvim' -- show signature while typing method
-    use 'gfanto/fzf-lsp.nvim' -- fzf lsp definitions etc
     use 'arkav/lualine-lsp-progress' -- lsp progress in statusline
     use 'folke/lsp-colors.nvim' -- better inline diagnostics
+
+    -- Remove after https://github.com/OmniSharp/omnisharp-roslyn/issues/2238 is fixed
+    use 'Hoffs/omnisharp-extended-lsp.nvim'
+    use 'nvim-telescope/telescope.nvim'
 
     -- tree sitter
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} -- syntax tree parser
@@ -536,6 +539,20 @@ for _, lsp in ipairs(servers) do
 
     nvim_lsp[lsp].setup {on_attach = on_attach, capabilities = caps}
 end
+
+local pid = vim.fn.getpid()
+local omnisharp_bin = "/usr/bin/omnisharp"
+local caps = vim.lsp.protocol.make_client_capabilities()
+caps = require('cmp_nvim_lsp').update_capabilities(caps)
+require'lspconfig'.omnisharp.setup {
+    on_attach = on_attach,
+    capabilities = caps,
+    handlers = {
+        ["textDocument/definition"] = require('omnisharp_extended').handler
+    },
+    cmd = {omnisharp_bin, "--languageserver", "--hostPID", tostring(pid)}
+}
+
 require'rust-tools'.setup({
     server = {on_attach = on_attach, capabilities = caps}
 })

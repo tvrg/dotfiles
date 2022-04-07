@@ -5,7 +5,6 @@
 [core]
     autocrlf = false
     excludesfile = ~/.gitignore
-    pager = delta
 [alias]
     st = status --short --branch
     co = checkout
@@ -38,15 +37,5 @@
 [commit]
     template = ~/.gitmessage
     verbose = true
-[interactive]
-    diffFilter = delta --light --color-only
-[delta]
-    features = line-numbers decorations
-    syntax-theme = Solarized (light)
-    whitespace-error-style = 22 reverse
-[delta "decorations"]
-    file-decoration-style = none
-    commit-decoration-style = bold yellow box ul
-    file-style = bold yellow ul
 [include]
     path = ~/.gitconfig_local

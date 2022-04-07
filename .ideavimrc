@@ -1,5 +1,6 @@
 set NERDTree
 set surround
+set ideajoin
 
 nmap g] :action GotoImplementation<CR>
 nmap gr :action ShowUsages<CR>

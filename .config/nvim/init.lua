@@ -26,7 +26,7 @@ require('packer').startup(function()
     use 'sbdchd/neoformat' -- format everything
 
     -- ui
-    use 'lifepillar/vim-solarized8' -- Theme
+    use 'morhetz/gruvbox'
     use 'hoob3rt/lualine.nvim' -- status line
     use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}} -- git signs
 
@@ -165,8 +165,7 @@ vim.o.splitright = true
 
 if vim.fn.has('termguicolors') then vim.o.termguicolors = true end
 
-vim.o.background = 'light'
-vim.cmd [[colorscheme solarized8]]
+vim.cmd [[colorscheme gruvbox]]
 
 -- Remap , as leader key
 vim.g.mapleader = ","
@@ -364,7 +363,7 @@ require('gitsigns').setup()
 require'lualine'.setup {
     options = {
         icons_enabled = false,
-        theme = 'solarized_light',
+        theme = 'gruvbox',
         component_separators = {'|', '|'},
         section_separators = {'', ''},
         disabled_filetypes = {}

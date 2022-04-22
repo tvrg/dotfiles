@@ -73,6 +73,7 @@ require('packer').startup(function()
     -- tree sitter
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} -- syntax tree parser
     use 'windwp/nvim-ts-autotag' -- close html tags via treesitter
+    use 'nvim-treesitter/nvim-treesitter-refactor'
     use 'JoosepAlviste/nvim-ts-context-commentstring'
     use 'nvim-treesitter/nvim-treesitter-textobjects'
     -- cool but really slow
@@ -419,20 +420,6 @@ local on_attach = function(client, bufnr)
         extra_trigger_chars = {"(", ","}
     })
 
-    if client.resolved_capabilities.document_highlight then
-        vim.cmd([[
-            augroup lsp_document_highlight
-                autocmd! * <buffer>
-                highlight LspReferenceText cterm=bold ctermbg=DarkGray gui=bold guibg=#a89984 guifg=#282828
-                highlight LspReferenceRead cterm=bold ctermbg=DarkGray gui=bold guibg=#a89984 guifg=#282828
-                autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-                autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
-                autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-                autocmd CursorMovedI <buffer> lua vim.lsp.buf.clear_references()
-            augroup END
-        ]])
-    end
-
     buf_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>',
                {silent = true, noremap = true})
     buf_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>',
@@ -479,6 +466,7 @@ require'nvim-treesitter.configs'.setup {
     autotag = {enable = true},
     indent = {enable = false},
     context_commentstring = {enable = true},
+    refactor = {highlight_definitions = {enable = true}},
     incremental_selection = {
         enable = true,
         keymaps = {

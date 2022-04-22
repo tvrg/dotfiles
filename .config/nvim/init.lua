@@ -89,6 +89,8 @@ vim.o.shortmess = vim.o.shortmess .. 'c'
 -- Incremental live completion
 vim.o.inccommand = "nosplit"
 
+vim.g.do_filetype_lua = true
+
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menu,menuone,noselect"
 

@@ -201,7 +201,8 @@ vim.g.ctrlsf_mapping = {next = 'n', prev = 'N'}
 
 keymap("n", "Y", 'y$', {silent = true, noremap = true})
 keymap("n", "ZW", ':w<CR>', {silent = true, noremap = true})
-keymap("n", "<leader>f", ':Rg<CR>', {silent = true, noremap = true})
+keymap("n", "<leader>f", ':Rg <C-R><C-W><CR>', {noremap = true})
+keymap("v", "<leader>f", 'y:Rg <C-R>0<CR>', {noremap = true})
 keymap("n", "<leader>au", ':UndotreeToggle<CR>', {silent = true, noremap = true})
 keymap("n", "<leader>as", ':CtrlSF ', {noremap = true})
 keymap("n", "<leader>af", ':Neoformat<CR>', {noremap = true})

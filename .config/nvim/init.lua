@@ -594,4 +594,20 @@ vim.g.neoformat_rust_rustfmt = {
     stdin = 1
 }
 
+vim.g.neoformat_markdown_prettier = {
+    exe = 'prettier',
+    args = {'--stdin-filepath', '"%:p"'},
+    stdin = 1,
+    try_node_exe = 1
+}
+
+vim.g.neoformat_vimwiki_prettier = {
+    exe = 'prettier',
+    args = {'--stdin-filepath', '"%:p"'},
+    stdin = 1,
+    try_node_exe = 1
+}
+
 vim.g.neoformat_enabled_rust = {'rustfmt'}
+vim.g.neoformat_enabled_markdown = {'prettier'}
+vim.g.neoformat_enabled_vimwiki = {'prettier'}

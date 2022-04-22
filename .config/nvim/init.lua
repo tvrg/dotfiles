@@ -67,6 +67,7 @@ require('packer').startup(function()
 
     -- Remove after https://github.com/OmniSharp/omnisharp-roslyn/issues/2238 is fixed
     use 'Hoffs/omnisharp-extended-lsp.nvim'
+    use 'nvim-lua/plenary.nvim'
     use 'nvim-telescope/telescope.nvim'
 
     -- tree sitter

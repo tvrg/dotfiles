@@ -171,6 +171,10 @@ vim.wo.signcolumn = "yes"
 -- Put vertical splits to the right
 vim.o.splitright = true
 
+-- use ripgrep
+vim.o.grepprg="rg --vimgrep --no-heading --smart-case"
+vim.o.grepformat="%f:%l:%c:%m,%f:%l:%m"
+
 if vim.fn.has('termguicolors') then vim.o.termguicolors = true end
 
 vim.cmd [[colorscheme gruvbox]]
@@ -205,8 +209,8 @@ vim.g.ctrlsf_mapping = {next = 'n', prev = 'N'}
 
 keymap("n", "Y", 'y$', {silent = true, noremap = true})
 keymap("n", "ZW", ':w<CR>', {silent = true, noremap = true})
-keymap("n", "<leader>f", ':Rg <C-R><C-W><CR>', {noremap = true})
-keymap("v", "<leader>f", 'y:Rg <C-R>0<CR>', {noremap = true})
+keymap("n", "<leader>f", ':grep <C-R><C-W><CR>', {noremap = true})
+keymap("v", "<leader>f", 'y:grep <C-R>0<CR>', {noremap = true})
 keymap("n", "<leader>au", ':UndotreeToggle<CR>', {silent = true, noremap = true})
 keymap("n", "<leader>as", ':CtrlSF ', {noremap = true})
 keymap("n", "<leader>af", ':Neoformat<CR>', {noremap = true})

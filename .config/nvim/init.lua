@@ -582,6 +582,7 @@ vim.g.vimwiki_list = {
 }
 
 vim.g.vimwiki_key_mappings = {table_format = 0}
+vim.g.vimwiki_listsyms = ' .oOx'
 
 vim.g.neoformat_rust_rustfmt = {
     exe = 'rustfmt',

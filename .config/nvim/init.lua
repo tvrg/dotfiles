@@ -333,10 +333,7 @@ require'nvim-tree'.setup {
                 {key = "g?", cb = tree_cb "toggle_help"}
             }
         }
-    },
-    update_focused_file = {enabled = true},
-    auto_resize = true,
-    update_to_buf_dir = {enable = true}
+    }
 }
 
 local cmp = require 'cmp'

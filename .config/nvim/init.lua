@@ -281,17 +281,6 @@ vim.g.undotree_WindowLayout = 2
 vim.g.undetree_SetFocusWhenToggle = 1
 
 -- file drawer
-vim.g.nvim_tree_show_icons = {git = 0, folders = 1, files = 0}
-vim.g.nvim_tree_icons = {
-    folder = {
-        default = "",
-        open = "",
-        empty = "",
-        empty_open = "",
-        symlink = "",
-        symlink_open = ""
-    }
-}
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 require'nvim-tree'.setup {
     filters = {custom = {".git", "node_modules", ".cache"}},
@@ -331,6 +320,25 @@ require'nvim-tree'.setup {
                 {key = "-", cb = tree_cb "dir_up"},
                 {key = "q", cb = tree_cb "close"},
                 {key = "g?", cb = tree_cb "toggle_help"}
+            }
+        }
+    },
+    renderer = {
+        icons = {
+            glyphs = {
+                folder = {
+                    default = "",
+                    open = "",
+                    empty = "",
+                    empty_open = "",
+                    symlink = "",
+                    symlink_open = ""
+                }
+            },
+            show = {
+                git = false,
+                folder = true,
+                file = false
             }
         }
     }
@@ -524,7 +532,7 @@ for _, lsp in ipairs(servers) do
         properties = {'documentation', 'detail', 'additionalTextEdits'}
     }
 
-    caps = require('cmp_nvim_lsp').update_capabilities(caps)
+    caps = require('cmp_nvim_lsp').default_capabilities(caps)
 
     nvim_lsp[lsp].setup {on_attach = on_attach, capabilities = caps}
 end
@@ -532,7 +540,7 @@ end
 local pid = vim.fn.getpid()
 local omnisharp_bin = "/usr/bin/omnisharp"
 local caps = vim.lsp.protocol.make_client_capabilities()
-caps = require('cmp_nvim_lsp').update_capabilities(caps)
+caps = require('cmp_nvim_lsp').default_capabilities(caps)
 require'lspconfig'.omnisharp.setup {
     on_attach = on_attach,
     capabilities = caps,
@@ -576,6 +584,13 @@ vim.g.vimwiki_list = {
 
 vim.g.vimwiki_key_mappings = {table_format = 0}
 vim.g.vimwiki_listsyms = ' .oOx'
+
+vim.cmd([[
+    augroup Vimwiki
+        autocmd!
+        autocmd FileType vimwiki nnoremap <buffer><silent> <C-]> :VimwikiVSplitLink<CR>
+    augroup end
+]])
 
 vim.g.neoformat_rust_rustfmt = {
     exe = 'rustfmt',

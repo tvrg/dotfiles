@@ -5,6 +5,8 @@ colorscheme solarized
 set editorcmd alacritty --title "Tridactyl Editor" --command nvim
 
 blacklistadd paypal.com
+blacklistadd md.ff-labs.de
+blacklistadd outlook.office.com/mail/
 
 unbind <C-f>
 unbind <F1>

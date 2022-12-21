@@ -16,6 +16,7 @@
     wip = !git add -A && git commit -m wip
 [push]
     default = current
+    autoSetupRemote = true
 [merge]
     tool = nvimdiff
     renameLimit = 100000000

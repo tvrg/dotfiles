@@ -2,13 +2,9 @@ theme = "solarized-dark"
 icons = "awesome"
 
 [[block]]
-block = "pomodoro"
-length = 25
-break_length = 5
-message = "Take a break!"
-break_message = "Back to work!"
-use_nag = true
-nag_path = "i3-nagbar"
+block = "custom"
+command = '''timew | grep -q Tracking && timew | grep Total | awk '{print $2}' || echo "notrack"'''
+on_click = '''timew | grep -q Tracking && timew stop || timew start'''
 
 [[block]]
 block = "disk_space"

@@ -269,6 +269,7 @@ keymap("n", "<Leader>u",
 keymap("v", "<Leader>u",
        "\"_s<c-r>=substitute(system('uuidgen'),'[\\r\\n]*$','','')<CR><ESC>",
        {silent = true, noremap = true})
+keymap("i", "<c-x><c-f>", "<plug>(fzf-complete-file)", {silent = true, noremap = true})
 
 -- luochen1990/rainbow
 vim.g.rainbow_active = 1

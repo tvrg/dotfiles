@@ -60,7 +60,7 @@ require('packer').startup(function()
         'iamcco/diagnostic-languageserver',
         requires = {'creativenull/diagnosticls-configs-nvim'}
     }
-    use 'simrat39/rust-tools.nvim' -- additional rust analyzer tools, f.ex show types in method chain
+    use 'kdarkhan/rust-tools.nvim' -- additional rust analyzer tools, f.ex show types in method chain
     use 'ray-x/lsp_signature.nvim' -- show signature while typing method
     use 'arkav/lualine-lsp-progress' -- lsp progress in statusline
     use 'folke/lsp-colors.nvim' -- better inline diagnostics

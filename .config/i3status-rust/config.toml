@@ -1,52 +1,34 @@
-theme = "solarized-dark"
-icons = "awesome"
-
-[[block]]
-block = "custom"
-command = '''timew | grep -q Tracking && timew | grep Total | awk '{print $2}' || echo "notrack"'''
-on_click = '''timew | grep -q Tracking && timew stop || timew start'''
-
 [[block]]
 block = "disk_space"
 path = "/"
-alias = "/"
 info_type = "available"
-unit = "GB"
 interval = 20
 warning = 20.0
 alert = 10.0
-format = "/{available}"
-
-[[block]]
-block = "disk_space"
-path = "/home"
-alias = "home"
-info_type = "available"
-unit = "GB"
-interval = 20
-warning = 20.0
-alert = 10.0
-format = "~{available}"
+format = "/$available"
 
 [[block]]
 block = "memory"
-display_type = "memory"
-format_mem = "{mem_used}/{mem_total} ({mem_used_percents})"
+format = "$mem_used/$mem_total"
 
 [[block]]
 block = "load"
 interval = 1
-format = "{1m}"
+format = "LOAD: $1m.eng(w:4) "
 
 [[block]]
 block = "sound"
 
 [[block]]
 block = "battery"
-interval = 10
-format = "{power} {percentage} {time}"
+format = "$icon $power $percentage $time"
+missing_format = "No Battery"
+
+[[block]]
+block = "backlight"
+device = "intel_backlight"
 
 [[block]]
 block = "time"
 interval = 60
-format = "%a %d/%m %R"
+format = " $timestamp.datetime(f:'%b %d %H:%M:%S') "

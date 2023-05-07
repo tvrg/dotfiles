@@ -2,29 +2,6 @@ if !has("nvim")
     set nocompatible              " be iMproved, required
 endif
 filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-if has("nvim")
-    call plug#begin('~/.nvim/bundle')
-else
-    call plug#begin('~/.vim/bundle')
-endif
-Plug 'tpope/vim-fugitive'
-Plug 'kien/ctrlp.vim', { 'on': 'CtrlPMRUFiles' }
-Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-"Plug 'frankier/neovim-colors-solarized-truecolor-only'
-Plug 'lifepillar/vim-solarized8'
-Plug 'vimwiki/vimwiki'
-Plug 'benekastah/neomake'
-Plug 'neovimhaskell/haskell-vim'
-Plug 'tpope/vim-surround'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'majutsushi/tagbar'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'udalov/kotlin-vim'
-call plug#end()
-
 filetype plugin indent on
 
 syntax on
@@ -76,19 +53,6 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set ignorecase
 set smartcase
 
-if has("nvim")
-    " live replace
-    set inccommand=nosplit
-endif
-
-" The Silver Searcher
-" if executable('ag')
-"   " Use ag over grep
-"   set grepprg=ag\ --nogroup\ --nocolor
-" else
-"     set grepprg=grep\ -nH\ $*
-" endif
-
 " bind K to grep word under cursor
 nnoremap K :set noincsearch<CR>:grep! "\b<C-R><C-W>\b"<CR>:cw<CR>:set incsearch<CR>
 
@@ -98,19 +62,10 @@ set tags+=.git/tags
 set tags+=tags
 set tags+=TAGS
 
-if ! exists('g:TagHighlightSettings')
-    let g:TagHighlightSettings = {}
-endif
-let g:TagHighlightSettings['TagFileName'] = '.git/tags'
-let g:TagHighlightSettings['TypesFileDirectory']=".git"
-
 " allow unsing the mouse
 set mouse=a
 " always show statusline
 set laststatus=2
-
-" fugitive status line
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 " show invisible characters
 set list
@@ -119,17 +74,6 @@ set listchars=tab:\|\ ,trail:…
 
 " clear trailing spaces on save
 "autocmd BufWritePre * kz|:%s/\s\+$//e|'z
-
-" Latex settings
-let g:tex_flavor='latex'
-
-let g:localvimrc_ask = 1
-" enable mouse inside vimwiki
-let g:vimwiki_use_mouse=1
-
-let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
-
-let g:xml_syntax_folding=1
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -234,10 +178,6 @@ if has("autocmd")
     au FileType haskell call SetupHaskell()
 endif
 
-" open NERDtree
-map <Leader>n :NERDTreeToggle<CR>
-map <Leader>rf :NERDTreeFind<CR>
-
 " easy copy and paste with gui-clipboard
 map <Leader>p "+p
 map <Leader>P "+P
@@ -285,20 +225,6 @@ nmap <silent> <Leader>f9 :set foldlevel=9<CR>
 " map ' to ` and vice versa
 nnoremap ' `
 nnoremap ` '
-
-" Don't allow gitgutter to map keys.
-let g:gitgutter_map_keys = 0
-
-" Custom ctrlp command.
-let g:ctrlp_user_command = {
-  \ 'types': {
-    \ 1: ['.git', 'cd %s && git ls-files'],
-    \ 2: ['_darcs', 'cd %s && darcs show files --no-pending --no-directories'],
-    \ },
-  \ 'fallback': 'find %s -type f'
-  \ }
-let g:ctrlp_cmd = 'CtrlPMRUFiles'
-nnoremap <C-p> :CtrlPMRUFiles<CR>
 
 " map to switch off hlsearch
 nnoremap <silent> <leader>h :silent :nohlsearch<CR>
@@ -358,45 +284,6 @@ command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
       \ | wincmd p | diffthis
 
 
-let g:neomake_haskell_enabled_makers = ['hlint']
-" autocmd! BufWritePost * Neomake
-
-let g:neomake_haskell_remote_maker = {
-    \ 'exe': './scripts/build-remotely.sh',
-    \ 'args': ['build'],
-    \ 'append_file': 0,
-    \ 'errorformat': '%E%f:%l:%c: %m,'.'%W%f:%l:c: Warning: %m,'.'%C%m'
-    \ }
-let g:neomake_ft_maker_remove_invalid_entries = 1
-
-let g:neomake_tex_enabled_makers = ['chktex']
-
-" let g:neomake_java_enabled_makers = ['gradle']
-
-if has("nvim")
-    tnoremap <C-l> <C-\><C-n><C-w><C-l>
-    tnoremap <C-h> <C-\><C-n><C-w><C-h>
-    tnoremap <C-j> <C-\><C-n><C-w><C-j>
-    tnoremap <C-k> <C-\><C-n><C-w><C-k>
-
-    au WinEnter * if &buftype == 'terminal' | startinsert | endif
-endif
-
-let g:haskell_indent_if = 3
-let g:haskell_indent_case = 2
-let g:haskell_indent_let = 4
-let g:haskell_indent_where = 2
-let g:haskell_indent_do = 3
-let g:haskell_indent_in = 1
-
-" if has('nvim') && executable('$HOME/bin/nvim-hs-devel.sh')
-"     call rpcrequest(rpcstart(expand('$HOME/bin/nvim-hs-devel.sh')), "PingNvimhs")
-" endif
-
-let g:gutentags_enabled=0
-
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=light
 set termguicolors
-colorscheme solarized8
-"colorscheme default
+colorscheme default

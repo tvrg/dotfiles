@@ -17,6 +17,8 @@ vim.cmd([[
     augroup end
 ]])
 
+vim.o.background = 'light'
+
 local use = require('packer').use
 require('packer').startup(function()
     use 'wbthomason/packer.nvim' -- Package manager
@@ -26,7 +28,7 @@ require('packer').startup(function()
     use 'sbdchd/neoformat' -- format everything
 
     -- ui
-    use 'morhetz/gruvbox'
+    use 'shaunsingh/solarized.nvim'
     use 'hoob3rt/lualine.nvim' -- status line
     use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}} -- git signs
 
@@ -177,7 +179,7 @@ vim.o.grepformat="%f:%l:%c:%m,%f:%l:%m"
 
 if vim.fn.has('termguicolors') then vim.o.termguicolors = true end
 
-vim.cmd [[colorscheme gruvbox]]
+require('solarized').set()
 
 -- Remap , as leader key
 vim.g.mapleader = ","
@@ -442,7 +444,7 @@ require('gitsigns').setup()
 require'lualine'.setup {
     options = {
         icons_enabled = false,
-        theme = 'gruvbox',
+        theme = 'solarized',
         component_separators = {'|', '|'},
         section_separators = {'', ''},
         disabled_filetypes = {}

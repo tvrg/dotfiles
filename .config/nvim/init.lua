@@ -94,7 +94,7 @@ vim.o.inccommand = "nosplit"
 vim.g.do_filetype_lua = true
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = "menu,menuone,noselect"
+vim.o.completeopt = "menu"
 
 -- Map blankline
 vim.o.list = true;
@@ -418,22 +418,28 @@ require'nvim-tree'.setup {
     }
 }
 
-local cmp = require 'cmp'
-
-cmp.setup({
-    snippet = {
-        expand = function(args) require('luasnip').lsp_expand(args.body) end
-    },
-    mapping = cmp.mapping.preset.insert({
-      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.abort(),
-      -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-      ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    }),
-    sources = cmp.config.sources({{name = 'nvim_lsp'}, {name = 'path'}})
-})
+-- local cmp = require 'cmp'
+-- 
+-- cmp.setup({
+--     completion = {
+--         autocomplete = false,
+--         completeopt = "menu,noselect"
+-- 
+--     },
+--     snippet = {
+--         expand = function(args) require('luasnip').lsp_expand(args.body) end
+--     },
+--     mapping = cmp.mapping.preset.insert({
+--       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+--       ['<C-f>'] = cmp.mapping.scroll_docs(4),
+--       ['<C-Space>'] = cmp.mapping.complete(),
+--       ['<C-e>'] = cmp.mapping.abort(),
+--       -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+--       ['<CR>'] = cmp.mapping.confirm({ select = true }),
+--       ['<Space>'] = cmp.mapping.confirm({ select = true }),
+--     }),
+--     sources = cmp.config.sources({{name = 'nvim_lsp'}, {name = 'path'}, {name = 'buffer'}})
+-- })
 
 -- gitsigns
 

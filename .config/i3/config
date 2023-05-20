@@ -179,3 +179,4 @@ bar {
 
 for_window [title="Microsoft Teams Notification"] floating enable
 for_window [title="Tridactyl Editor"] floating enable
+for_window [title="Calculator"] floating enable

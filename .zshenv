@@ -4,3 +4,6 @@ export BROWSER="firefox"
 export DIFFPROG="nvim -d"
 export FZF_DEFAULT_COMMAND='fd --type f --no-ignore --hidden --exclude .git'
 export FZF_CTRL_T_COMMAND='fd --type f'
+export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
+export PATH="$PATH:/home/thomas/bin"
+export NODE_OPTIONS=--use-openssl-ca

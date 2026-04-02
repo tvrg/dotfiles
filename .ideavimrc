@@ -5,8 +5,6 @@ set ideajoin
 nmap g] :action GotoImplementation<CR>
 nmap gr :action ShowUsages<CR>
 nmap gs :action GotoSuperMethod<CR>
-nmap ,wl :action MoveTabRight<CR>
-nmap ,wh :action MoveTabLeft<CR>
 nmap ]m :action MethodDown<CR>
 nmap [m :action MethodUp<CR>
 nmap ]q :action NextOccurence<CR>
@@ -35,3 +33,8 @@ nmap ,n :NERDTreeToggle<CR>
 nmap ,rf :NERDTreeFind<CR>
 nmap <C-o> :action Back<CR>
 nmap <C-i> :action Forward<CR>
+
+nmap g; :action JumpToLastChange<Enter>
+nmap g, :action JumpToNextChange<Enter>
+
+" set isk=a-z,A-Z,0-9,_,-

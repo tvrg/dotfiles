@@ -5,7 +5,6 @@ colorscheme solarized
 set editorcmd alacritty --title "Tridactyl Editor" --command nvim
 
 blacklistadd paypal.com
-blacklistadd md.ff-labs.de
 blacklistadd outlook.office.com/mail/
 
 unbind <C-f>
@@ -16,9 +15,6 @@ bind B fillcmdline bmarks
 bind d scrollpage 0.5
 bind u scrollpage -0.5
 bind x tabclose
-
-bindurl www.google.com f hint -Jc #search div:not(.action-menu) > a
-bindurl www.google.com F hint -Jbc #search div:not(.action-menu) > a
 
 set searchurls.aur https://aur.archlinux.org/packages/?O=0&K=
 set searchurls.npm https://www.npmjs.com/search?q=

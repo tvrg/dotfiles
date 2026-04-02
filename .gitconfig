@@ -1,5 +1,5 @@
 [user]
-	name = Thomas von Rosenberg
+    name = Thomas von Rosenberg
     # email is set via ~/.gitconfig_local
     # email = <email>
 [core]
@@ -28,6 +28,8 @@
     autosetuprebase = always
 [pull]
     rebase = true
+[rebase]
+    autostash = true
 [gc]
     autoDetach = false
 [filter "lfs"]
@@ -40,3 +42,7 @@
     verbose = true
 [include]
     path = ~/.gitconfig_local
+[diff "ansible-vault"]
+    textconv = ansible-vault view
+[init]
+	defaultBranch = main

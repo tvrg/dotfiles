@@ -1,6 +1,6 @@
 exec --no-startup-id "pa-applet"
 exec --no-startup-id "mate-settings-daemon"
-exec_always --no-startup-id "xset r rate 400 40"
+exec_always --no-startup-id "xset r rate 400 60"
 
 set $mod Mod4
 
@@ -11,11 +11,10 @@ client.focused_inactive #333333 #5F676A #ffffff #484e50
 client.unfocused        #333333 #424242 #888888 #292d2e
 client.urgent           #C10004 #900000 #ffffff #900000
 
-bindcode $mod+33 exec "$HOME/.i3/bin/suspendandlock"
-# bindcode $mod+32 exec "$HOME/.i3/bin/hibernateandlock"
+# bindcode $mod+31 exec "$HOME/.i3/bin/suspendandlock"
 
 bindcode $mod+42 exec "setxkbmap de"
-bindcode $mod+48 exec "setxkbmap dvorak-tvr basic"
+bindcode $mod+48 exec "setxkbmap us dvp"
 
 bindcode $mod+Shift+Control+44 move workspace to output left
 bindcode $mod+Shift+Control+46 move workspace to output right
@@ -37,14 +36,14 @@ font pango:monospace 10
 floating_modifier $mod
 
 # start a terminal
-bindcode $mod+36 exec alacritty
+bindcode $mod+36 exec alacritty -e tmux new-session -A -s main
 
 # kill focused window
 bindcode $mod+25 kill
 
 # start rofi
 bindcode $mod+32 exec rofi -show run
-bindcode $mod+27 exec bwmenu --clear=5
+bindcode $mod+53 exec rofi -show calc -modi calc -no-show-match -no-sort
 bindcode $mod+61 exec gopass ls --flat | rofi -dmenu -i -p gopass | xargs -I {} --no-run-if-empty gopass show -c "{}"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications

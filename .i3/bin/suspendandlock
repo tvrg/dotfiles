@@ -1,3 +1,0 @@
-#!/bin/bash
-
-i3lock -c 222222 && sudo pm-suspend

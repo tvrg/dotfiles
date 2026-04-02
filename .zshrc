@@ -97,6 +97,7 @@ alias docker-ip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
 alias z="fasd_cd -d"
 alias zz="fasd_cd -d -i"
 alias c='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias magit='emacsclient --tty --alternate-editor="" --eval "(progn (magit-status) (delete-other-windows))"'
 
 bindkey -M viins '^F' history-incremental-pattern-search-forward
 bindkey -M vicmd v edit-command-line
@@ -114,11 +115,6 @@ if [ -f '/home/thomas/google-cloud-sdk/path.zsh.inc' ]; then . '/home/thomas/goo
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/thomas/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/thomas/google-cloud-sdk/completion.zsh.inc'; fi
-
-export JIRA_URL='https://jira.omikron.net/browse/'
-function jira(){
-  xdg-open $JIRA_URL`task _get "$1".jira`
-}
 
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh

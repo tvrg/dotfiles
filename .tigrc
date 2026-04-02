@@ -1,7 +1,17 @@
 bind main x @git commit --fixup %(commit)
 bind log x @git commit --fixup %(commit)
-bind main R !git rebase --autosquash -i %(commit)
+bind main R !git rebase --autosquash -i %(commit)^
+
+bind main A ?git commit --amend --no-edit
+bind status A >?git commit --amend --no-edit
+
+bind status M >!stagemerge %(file)
+bind stage M >!stagemerge %(file)
+
 bind generic s view-status
 set refresh-mode = after-command
 
 bind status U >!tig -- %(file)
+bind stage U >!tig -- %(file)
+bind generic Y @sh -c "echo -n %(commit) | xclip -selection c && echo Copied %(commit) to clipboard"
+

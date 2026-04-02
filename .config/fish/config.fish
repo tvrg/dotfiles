@@ -65,6 +65,11 @@ if status is-interactive
         abbr --add fasd_inline --position anywhere --regex ',[^ ]+' --function fasd_inline
     end
 
+    function kc_abbr
+        echo 'kubectl --context '(kubectl config get-contexts -o name | fzf --height 10); and commandline -f repaint
+    end
+    abbr --add kc --function kc_abbr
+
     # get zsh like up/down
 
     # from: type up-or-search
@@ -153,20 +158,22 @@ if status is-interactive
             set git_branch (set_color -o cyan)" "$git_branch
         end
 
-        string join '' -- [ $stat (set_color -o green) $puser@$phost (set_color -o grey) ' ' $prompt (set_color normal) $git_branch (set_color normal) ] ' '
+        string join '' -- [ $stat (set_color -o green) $puser@$phost (set_color -o normal) ' ' $prompt (set_color normal) $git_branch (set_color normal) ] ' '
     end
 
     set -g fish_greeting
     set -g fish_autosuggestion_enabled 0
 
     if command -q nvim
-        set -Ux EDITOR nvim
+        set -gx EDITOR nvim
         abbr --add vim nvim
     else if command -q vim
-        set -Ux EDITOR vim
+        set -gx EDITOR vim
     else if command -q vi
-        set -Ux EDITOR vi
+        set -gx EDITOR vi
     end
+
+    set -gx PAGER less
 
     abbr --add g git
     abbr --add xc xclip -sel clip
@@ -182,38 +189,47 @@ if status is-interactive
         fzf_key_bindings
     end
 
-    set -l foreground ebdbb2
-    set -l selection 504945
-    set -l comment 8f3f71
-    set -l red fb4934
-    set -l orange fe8019
-    set -l yellow fabd2f
-    set -l green b8bb26
-    set -l purple d3869b
-    set -l cyan 8ec07c
-    set -l blue 83a598
+    set -gx NODE_OPTIONS --use-openssl-ca
 
-    # Syntax Highlighting Colors
-    set -g fish_color_normal $foreground
-    set -g fish_color_command $green
-    set -g fish_color_keyword $blue
-    set -g fish_color_quote $yellow
-    set -g fish_color_redirection $foreground
-    set -g fish_color_end $orange
-    set -g fish_color_error $red
-    set -g fish_color_param $foreground
-    set -g fish_color_comment $comment
-    set -g fish_color_selection --background=$selection
-    set -g fish_color_search_match --background=$selection
-    set -g fish_color_operator $green
-    set -g fish_color_escape $blue
-    set -g fish_color_autosuggestion $comment
-
-    # Completion Pager Colors
-    set -g fish_pager_color_progress $comment
-    set -g fish_pager_color_prefix $cyan
-    set -g fish_pager_color_completion $foreground
-    set -g fish_pager_color_description $comment
+    set -U fish_color_normal normal
+    set -U fish_color_command 586e75
+    set -U fish_color_keyword 586e75
+    set -U fish_color_quote 839496
+    set -U fish_color_redirection 6c71c4
+    set -U fish_color_end 268bd2
+    set -U fish_color_error dc322f
+    set -U fish_color_param 657b83
+    set -U fish_color_comment 93a1a1
+    set -U fish_color_match --background=brblue
+    set -U fish_color_selection white --bold --background=brblack
+    set -U fish_color_search_match bryellow --background=white
+    set -U fish_color_history_current --bold
+    set -U fish_color_operator 00a6b2
+    set -U fish_color_escape 00a6b2
+    set -U fish_color_cwd green
+    set -U fish_color_cwd_root red
+    set -U fish_color_option 657b83
+    set -U fish_color_valid_path --underline
+    set -U fish_color_autosuggestion 93a1a1
+    set -U fish_color_user brgreen
+    set -U fish_color_host normal
+    set -U fish_color_host_remote yellow
+    set -U fish_color_history_current --bold
+    set -U fish_color_status red
+    set -U fish_color_cancel --reverse
+    set -U fish_pager_color_prefix cyan --underline
+    set -U fish_pager_color_progress brwhite --background=cyan
+    set -U fish_pager_color_completion green
+    set -U fish_pager_color_description B3A06D
+    set -U fish_pager_color_selected_background --background=white
+    set -U fish_pager_color_secondary_description
+    set -U fish_pager_color_secondary_prefix
+    set -U fish_pager_color_selected_completion
+    set -U fish_pager_color_selected_description
+    set -U fish_pager_color_secondary_completion
+    set -U fish_pager_color_secondary_background
+    set -U fish_pager_color_selected_prefix
+    set -U fish_pager_color_background
 
     bind \cc 'if test (commandline -b) = ""; echo ""; and commandline -f repaint; else; commandline -f cancel-commandline; end'
 

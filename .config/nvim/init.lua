@@ -22,7 +22,7 @@ vim.opt.rtp:prepend(lazypath)
 keymap("", ",", "<Nop>", { noremap = true, silent = true })
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
-keymap('n', '\\', ',', {noremap = true, silent = true})
+keymap("n", "\\", ",", { noremap = true, silent = true })
 
 local plugins = {
 	"airblade/vim-rooter", -- change cwd to git root
@@ -66,6 +66,7 @@ local plugins = {
 				typescriptreact = { "prettier" },
 				json = { "prettier" },
 				yaml = { "prettier" },
+				vimwiki = { "prettier" },
 			},
 			formatters = { rustfmt = { prepend_args = { "--edition", "2021" } } },
 		},
@@ -75,13 +76,13 @@ local plugins = {
 		priority = 1000,
 		config = function()
 			vim.o.termguicolors = true
-            vim.g.solarized_italic_comments = true
-            vim.g.solarized_italic_keywords = true
-            vim.g.solarized_italic_functions = true
-            vim.g.solarized_italic_variables = false
-            vim.g.solarized_contrast = true
-            vim.g.solarized_borders = false
-            vim.g.solarized_disable_background = false
+			vim.g.solarized_italic_comments = true
+			vim.g.solarized_italic_keywords = true
+			vim.g.solarized_italic_functions = true
+			vim.g.solarized_italic_variables = false
+			vim.g.solarized_contrast = true
+			vim.g.solarized_borders = false
+			vim.g.solarized_disable_background = false
 			require("solarized").set()
 			vim.cmd([[colorscheme solarized]])
 		end,
@@ -265,7 +266,7 @@ local plugins = {
 		"nvim-treesitter/nvim-treesitter",
 		lazy = false,
 		build = ":TSUpdate",
-        branch = "master",
+		branch = "master",
 		dependencies = {
 			{ "windwp/nvim-ts-autotag", ft = { "html", "typescriptreact" } }, -- close html tags via treesitter
 			{ "JoosepAlviste/nvim-ts-context-commentstring", ft = { "html", "typescriptreact" } },
@@ -292,7 +293,7 @@ local plugins = {
 					"typescript",
 					"xml",
 					"yaml",
-				}
+				},
 			})
 		end,
 	},
@@ -382,6 +383,27 @@ local plugins = {
 	},
 	"neovim/nvim-lspconfig",
 	{ "j-hui/fidget.nvim", event = "LspAttach", opts = {} },
+	{
+		"vimwiki/vimwiki",
+		init = function()
+			vim.g.vimwiki_use_mouse = 1
+			vim.g.vimwiki_list = {
+				{ path = "~/vimwiki/", syntax = "markdown", ext = ".md", index = "home" },
+				{ path = "~/vimwiki-work/", syntax = "markdown", ext = ".md", index = "home" },
+			}
+			vim.g.vimwiki_key_mappings = { table_format = 0 }
+			vim.g.vimwiki_listsyms = " .oOx"
+		end,
+		config = function()
+			vim.api.nvim_create_autocmd("FileType", {
+				group = vim.api.nvim_create_augroup("Vimwiki", { clear = true }),
+				pattern = "vimwiki",
+				callback = function()
+					vim.keymap.set("n", "<C-]>", ":VimwikiVSplitLink<CR>", { buffer = true, silent = true })
+				end,
+			})
+		end,
+	},
 }
 
 require("lazy").setup({ spec = plugins, install = { colorscheme = { "solarized" } }, checker = { enabled = false } })
@@ -488,7 +510,7 @@ vim.o.mouse = "a"
 -- Enable break indent
 vim.o.breakindent = true
 
--- coller tabs
+-- cooler tabs
 vim.o.expandtab = true
 
 -- Save undo history
@@ -549,47 +571,49 @@ keymap("n", "<leader>y", '"+y', { noremap = true })
 keymap("n", "<leader>d", '"+d', { noremap = true })
 keymap("v", "<leader>y", '"+y', { silent = true, noremap = true })
 keymap("v", "<leader>d", '"+d', { silent = true, noremap = true })
-keymap("n", "<leader>tn", ':tabnew<CR>', {silent = true, noremap = true})
-keymap("n", "<leader>+", ':resize +4<CR>', {silent = true, noremap = true})
-keymap("n", "<leader>-", ':resize -4<CR>', {silent = true, noremap = true})
-keymap("n", "+", ':vertical resize +4<CR>', {silent = true, noremap = true})
-keymap("n", "-", ':vertical resize -4<CR>', {silent = true, noremap = true})
+keymap("n", "<leader>tn", ":tabnew<CR>", { silent = true, noremap = true })
+keymap("n", "<leader>+", ":resize +4<CR>", { silent = true, noremap = true })
+keymap("n", "<leader>-", ":resize -4<CR>", { silent = true, noremap = true })
+keymap("n", "+", ":vertical resize +4<CR>", { silent = true, noremap = true })
+keymap("n", "-", ":vertical resize -4<CR>", { silent = true, noremap = true })
 
-keymap("n", "<leader>b", ':Buffers<CR>', {silent = true, noremap = true})
+keymap("n", "<leader>hc", ":nohlsearch<CR>", { silent = true, noremap = true })
 
-keymap("n", "<leader>hc", ":nohlsearch<CR>", {silent = true, noremap = true})
-
-keymap("n", "<leader>rc", ":edit $MYVIMRC<CR>", {silent = true, noremap = true})
-keymap("n", "<leader>rl", ":source $MYVIMRC<CR>", {silent = true, noremap = true})
+keymap("n", "<leader>rc", ":edit $MYVIMRC<CR>", { silent = true, noremap = true })
+keymap("n", "<leader>rl", ":source $MYVIMRC<CR>", { silent = true, noremap = true })
 
 -- swap ' and `
-keymap("n", "'", "`", {silent = true, noremap = true})
-keymap("n", "`", "'", {silent = true, noremap = true})
+keymap("n", "'", "`", { silent = true, noremap = true })
+keymap("n", "`", "'", { silent = true, noremap = true })
 
 -- simplified window switching
-keymap("n", "<C-l>", "<C-w><C-l>", {silent = true, noremap = true})
-keymap("n", "<C-h>", "<C-w><C-h>", {silent = true, noremap = true})
-keymap("n", "<C-j>", "<C-w><C-j>", {silent = true, noremap = true})
-keymap("n", "<C-k>", "<C-w><C-k>", {silent = true, noremap = true})
+keymap("n", "<C-l>", "<C-w><C-l>", { silent = true, noremap = true })
+keymap("n", "<C-h>", "<C-w><C-h>", { silent = true, noremap = true })
+keymap("n", "<C-j>", "<C-w><C-j>", { silent = true, noremap = true })
+keymap("n", "<C-k>", "<C-w><C-k>", { silent = true, noremap = true })
 
 -- stay in visual mode after shifting
-keymap("v", ">", ">gv", {silent = true, noremap = true})
-keymap("v", "<", "<gv", {silent = true, noremap = true})
+keymap("v", ">", ">gv", { silent = true, noremap = true })
+keymap("v", "<", "<gv", { silent = true, noremap = true })
 
 -- do not move when using *
-keymap("n", "*",
-       ":let star_view=winsaveview()<CR>*:call winrestview(star_view)<CR>",
-       {silent = true, noremap = true})
+keymap("n", "*", ":let star_view=winsaveview()<CR>*:call winrestview(star_view)<CR>", { silent = true, noremap = true })
 
-keymap("n", "<C-@>", "<C-^>", {silent = true, noremap = true})
+keymap("n", "<C-@>", "<C-^>", { silent = true, noremap = true })
 
 -- weird uuid mappings
-keymap("n", "<Leader>u",
-       'a<c-r>=substitute(system("uuidgen"),"[\\r\\n]*$","","")<CR><ESC>',
-       {silent = true, noremap = true})
-keymap("v", "<Leader>u",
-       "\"_s<c-r>=substitute(system('uuidgen'),'[\\r\\n]*$','','')<CR><ESC>",
-       {silent = true, noremap = true})
+keymap(
+	"n",
+	"<Leader>u",
+	'i<c-r>=substitute(system("uuidgen"),"[\\r\\n]*$","","")<CR><ESC>',
+	{ silent = true, noremap = true, desc = "Insert new uuid" }
+)
+keymap(
+	"v",
+	"<Leader>u",
+	"\"_s<c-r>=substitute(system('uuidgen'),'[\\r\\n]*$','','')<CR><ESC>",
+	{ silent = true, noremap = true, desc = "Replace selection with new uuid" }
+)
 
 vim.keymap.set("i", "<C-x><C-f>", function()
 	require("snacks").picker.files({

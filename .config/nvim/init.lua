@@ -591,4 +591,16 @@ keymap("v", "<Leader>u",
        "\"_s<c-r>=substitute(system('uuidgen'),'[\\r\\n]*$','','')<CR><ESC>",
        {silent = true, noremap = true})
 
-keymap("i", "<c-x><c-f>", "<plug>(fzf-complete-file)", {silent = true, noremap = true})
+vim.keymap.set("i", "<C-x><C-f>", function()
+	require("snacks").picker.files({
+		actions = {
+			confirm = function(picker, item)
+				picker:close()
+				if item then
+					vim.api.nvim_put({ item.file }, "", false, true)
+					vim.cmd("startinsert")
+				end
+			end,
+		},
+	})
+end, { silent = true, desc = "Fuzzy find and insert file path" })

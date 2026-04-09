@@ -26,13 +26,6 @@ keymap('n', '\\', ',', {noremap = true, silent = true})
 
 local plugins = {
 	"airblade/vim-rooter", -- change cwd to git root
-	{
-		"akinsho/bufferline.nvim",
-		dependencies = "nvim-tree/nvim-web-devicons",
-		config = function()
-			require("bufferline").setup()
-		end,
-	},
 	{ "tpope/vim-fugitive", cmd = "Git" },
 	{ "windwp/nvim-autopairs", opts = { check_ts = true } }, -- autoclose ()
 	{ "kylechui/nvim-surround", config = true }, -- surround operations

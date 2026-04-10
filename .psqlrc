@@ -1,0 +1,8 @@
+\set HISTSIZE 50000
+\timing
+\x auto
+\set PROMPT1 '(%n@%M:%>) [%/] > '
+\set PROMPT2 ''
+\encoding unicode
+\pset null 'NULL'
+\setenv PSQL_PAGER 'less -FX'

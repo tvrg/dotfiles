@@ -484,10 +484,6 @@ vim.o.confirm = true
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menu,menuone,noselect"
 
--- Map blankline
---vim.o.list = true
---vim.o.listchars = "trail:•"
-
 -- Set highlight on search
 vim.o.hlsearch = false
 vim.o.incsearch = true
@@ -507,17 +503,34 @@ vim.o.backspace = "indent,eol,start"
 -- Enable mouse mode
 vim.o.mouse = "a"
 
+-- Set highlight on search
+vim.o.hlsearch = true
+vim.o.incsearch = true
+
 -- Enable break indent
 vim.o.breakindent = true
 
+vim.o.smartindent = true
+
 -- cooler tabs
 vim.o.expandtab = true
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+
+-- Include hypen (-) in w(ord)-motions
+vim.o.iskeyword = '@,48-57,_,-,192-255'
 
 -- Save undo history
 vim.o.undofile = true
 vim.o.undolevels = 1000
 vim.o.undoreload = 1000
 vim.o.undodir = vim.fn.expand("$HOME") .. "/.vimundo"
+
+-- Don't insert two spaces after a sentence.
+vim.o.joinspaces = false
+
+-- Put vertical splits to the right
+vim.o.splitright = true
 
 -- Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
